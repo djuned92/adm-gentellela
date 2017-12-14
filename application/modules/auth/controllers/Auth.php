@@ -7,8 +7,6 @@ class Auth extends MX_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_auth','auth');
-		$this->load->library('form_validation');
-		$this->load->module('api/api_auth');
 		$this->load->module('api/api_users');
 	}
 
@@ -40,7 +38,7 @@ class Auth extends MX_Controller {
 			$result['error'] 	= TRUE;
 			$result['message'] 	= validation_errors();
 		} else {
-			$this->api_auth->login();
+			$this->m_auth->login();
 		}
 
 	}

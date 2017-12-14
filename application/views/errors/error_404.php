@@ -1,3 +1,11 @@
+<?php
+  defined('BASEPATH') OR exit('No direct script access allowed');
+  $CI =& get_instance();
+  if(!isset($CI)) {
+    $CI = new CI_Controller();
+  }
+  $CI->load->helper('url');
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>Not Found 404</title>
 
     <!-- Bootstrap -->
     <link href="<?=base_url('assets/vendors/bootstrap/dist/css/bootstrap.min.css')?>" rel="stylesheet">
@@ -29,8 +37,9 @@
             <div class="text-center text-center">
               <h1 class="error-number">404</h1>
               <h2>Sorry but we couldn't find this page</h2>
-              <p>This page you are looking for does not exist <a href="#">Report this?</a>
+              <p>This page you are looking for does not exist
               </p>
+              <h4><a href="<?=base_url('home')?>"><i class="fa fa-home"></i> Back to home ...</a></h4>
               <!-- 
               <div class="mid_center">
                 <h3>Search</h3>

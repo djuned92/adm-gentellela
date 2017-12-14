@@ -3,24 +3,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		// $this->load->view('welcome_message');
+		/*
+		$data = $this->global->getJoin(
+								'users',
+								'*', 
+								['profiles'=>'profiles.user_id = users.id'],
+								['users.id'=>'ASC'])->result_array();
+		$data = $this->global->get(
+					'users',
+					'*', 
+					['username'=>(object)['LIKE','test2']])->result_array();
+		*/
+		// $data = $this->global->getCond('pintu_air','*',['gaugeNameId'=>['Pasar Ikan','Waduk Pluit']])->result_array();
+		dd(decode('i+mLqx7TqPjIIVb+lfzGhtF2V6mMgLOPHfskzjfSXtrR4i+RZlE/bF9Req7VU5925u4MHcIEDuKjsBddAQivng=='));
+		// $this->load->view('welcome_message');
 	}
 
 	public function _404()

@@ -1,6 +1,12 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+  defined('BASEPATH') OR exit('No direct script access allowed');
+  $CI =& get_instance();
+  if(!isset($CI)) {
+    $CI = new CI_Controller();
+  }
+  $CI->load->helper('url');
+?>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>Not Found 404</title>
 
     <!-- Bootstrap -->
     <link href="<?=base_url('assets/vendors/bootstrap/dist/css/bootstrap.min.css')?>" rel="stylesheet">
