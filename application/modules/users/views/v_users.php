@@ -32,7 +32,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <table class="table table-bordered table-striped" id="tbl-users">
+                <table class="table table-bordered table-striped" id="myTable">
                     <thead>
                         <tr>
                             <th width="3%">#</th>
@@ -61,13 +61,13 @@
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu-right" style="right: 0; left: auto;">
                                             <li>
-                                                <a href="<?=base_url('users/update/'.$value['id'])?>">
+                                                <a href="<?=base_url('users/update/'.encode($value['id']))?>">
                                                     <i class="fa fa-pencil"></i> Edit
                                                 </a>
                                             </li>
                                             <li class="divider"></li>
                                             <li>
-                                                <a href="#" class="btn-delete" data-id="<?=$value['id']?>">
+                                                <a href="#" class="btn-delete" data-id="<?=encode($value['id'])?>">
                                                     <i class="fa fa-trash"></i> Delete
                                                 </a>
                                             </li>
@@ -89,44 +89,8 @@
 <script src="<?=base_url('assets/vendors/datatables/js/dataTables.bootstrap.js')?>"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#tbl-users').DataTable();
+        $('#myTable').DataTable();
     });
-
-    $('#tbl-users').delegate('a.btn-delete', 'click', function(e){
-            e.preventDefault();
-            var id = $(this).data('id');
-            swal({
-                title: "Confirm Delete Data",
-                text: "Are you sure delete this data?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonClass: 'btn-danger',
-                confirmButtonText: 'Delete',
-                cancelButtonText: "Cancel",
-                closeOnConfirm: false,
-                closeOnCancel: false
-            },
-            function(isConfirm){
-                if (isConfirm){
-                    $.ajax({
-                        type: "post",
-                        dataType: "json",
-                        url: "<?=base_url('users/delete')?>",
-                        data: {id: id},
-                        beforeSend: function() {},
-                        success: function(r) {
-                            if(r.error == false) {
-                                swal(r.message, "", r.type);
-                                setTimeout(function() {
-                                    window.location.href = "<?=base_url('users')?>";  
-                                }, 2000);
-                            }
-                        },
-                        error: function(e) {}
-                    });
-                } else {
-                    swal("Failure", "Delete Cancel", "error");
-                }
-            });
-        });
 </script>
+
+<?php $this->load->view('helper/ajax_form_delete') ?>

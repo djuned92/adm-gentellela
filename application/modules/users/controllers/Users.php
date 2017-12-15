@@ -17,7 +17,7 @@ class Users extends MX_Controller {
 		$users 			= json_decode($json, TRUE);
 		$data['users'] 	= $users['users'];
 
-		// print_r($data);die();
+		
 		$this->template->set_layout('backend')
 						->title('Home - Gentella')
 						->build('v_users', $data);
@@ -43,11 +43,11 @@ class Users extends MX_Controller {
 
 	public function update()
 	{
-		$id 			= $this->uri->segment(3);
+		$id 			= decode($this->uri->segment(3));
 		$url 			= base_url() . 'api/api_users/get_by_id/' . $id;
 		$user 			= json_decode($this->curl->simple_get($url), TRUE);
 		$d['user'] 		= $user['user'];
-
+		
 		$this->form_validation->set_rules('username', 'Username', 'trim|required');
 		$this->form_validation->set_rules('fullname', 'Fullname', 'trim|required');
 		$this->form_validation->set_rules('address', 'Address', 'trim|required');

@@ -39,10 +39,10 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form class="form-horizontal form-label-left" id="form_user" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal form-label-left" id="myForm">
                     
                     <?php if($this->uri->segment(2) == 'update'): ?>
-                    <input type="hidden" name="id" value="<?=$user['id']?>">
+                    <input type="hidden" name="id" value="<?=$this->uri->segment(3)?>">
                     <?php endif ?>
 
                     <h4>User Account</h4>
@@ -155,7 +155,7 @@
             }
         });
 
-        $('#form_user').validate({
+        $('#myForm').validate({
             rules: {
                 username: {
                     required: true
@@ -185,7 +185,7 @@
             },
             submitHandler: function(form) {
                 // form.submit();
-                var form = $('#form_user')[0],
+                var form = $('#myForm')[0],
                     data = new FormData(form);
                 <?php if($this->uri->segment(2) == 'add') : ?>
                     var this_url = "<?=base_url('users/add')?>";

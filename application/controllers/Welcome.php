@@ -18,7 +18,7 @@ class Welcome extends CI_Controller {
 					['username'=>(object)['LIKE','test2']])->result_array();
 		*/
 		// $data = $this->global->getCond('pintu_air','*',['gaugeNameId'=>['Pasar Ikan','Waduk Pluit']])->result_array();
-		dd(decode('i+mLqx7TqPjIIVb+lfzGhtF2V6mMgLOPHfskzjfSXtrR4i+RZlE/bF9Req7VU5925u4MHcIEDuKjsBddAQivng=='));
+		dd(decode('3IeCNQFaIBxnPlXABBb5VGUKzAV-A_DT_TsA3uG_83m-cvPkNc4dQZy1p-P_aPpJ2bS3_YRfIVtGz2aO4AzoSg~~'));
 		// $this->load->view('welcome_message');
 	}
 

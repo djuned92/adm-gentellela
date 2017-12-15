@@ -50,16 +50,25 @@ function hs($str){
     return htmlspecialchars($str, ENT_QUOTES);
 }
 
+/**
+* short to encode
+* @param value
+*/
 function encode($value)
 {
     $ci =& get_instance();
     $ci->load->library('encrypt');
-    return $ci->encrypt->encode($value);
+    return str_replace(array('+','/','='),array('-','_','~'), $ci->encrypt->encode($value));
 }
 
+/**
+* short to decode
+* @param value
+*/
 function decode($value)
 {
     $ci =& get_instance();
     $ci->load->library('encrypt');
-    return $ci->encrypt->decode($value);   
+    $value = str_replace(array('-','_','~'), array('+','/','='), $value);   
+    return $ci->encrypt->decode($value);
 }
