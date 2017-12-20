@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Debug some vars and die.
+ * dd is developer debug some vars and die.
  * @param* mixed vars The things to debug.
  */
 function dd(){

@@ -40,7 +40,6 @@ class Auth extends MX_Controller {
 		} else {
 			$this->m_auth->login();
 		}
-
 	}
 
 	public function do_logout()

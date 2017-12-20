@@ -78,6 +78,7 @@ class Api_users extends MX_Controller {
         	$this->db->trans_commit();
 			$result['code']		= 200;
 			$result['error']	= FALSE;
+			$result['type']		= 'success';
 			$result['message']	= 'Success registered!';
         }
 
@@ -140,6 +141,7 @@ class Api_users extends MX_Controller {
 		if($id != NULL || $id != '') {
 			$result['code'] 	= 200;
 			$result['error']	= FALSE;
+			$result['type']		= 'success';
 			$result['message']	= 'User has been deleted!';
 			$this->global->delete('users', array('id' => $id));
 			$this->global->delete('profiles', array('user_id' => $id));

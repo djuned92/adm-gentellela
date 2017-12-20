@@ -3,6 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Handling_error extends CI_Controller {
 
+	/**
+	* custom error 404
+	*/
 	public function _404()
 	{
 		$this->output->set_status_header('404');

@@ -1,0 +1,113 @@
+<!-- bootstrap switch -->
+<link href="<?=base_url('assets/vendors/bootstrap-switch/bootstrap-switch.css')?>" rel="stylesheet">
+<!-- datatables -->
+<link href="<?=base_url('assets/vendors/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+<div class="page-title">
+    <div class="title_left">
+        <h3>Menus</h3>
+    </div>
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Menus</h2>
+                <div class="navbar-right">
+                    <a href="<?=base_url('menus/add')?>">
+                        <button type="button" class="btn btn-sm btn-primary">
+                            <i class="fa fa-plus"></i> Add
+                        </button>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table class="table table-bordered table-striped" id="myTable">
+                    <thead>
+                        <tr>
+                            <th width="3%">#</th>
+                            <th width="20%">Menu</th>
+                            <th width="20%">URL/Link</th>
+                            <th width="20%">Parent</th>
+                            <th width="13%">Menu Order</th>
+                            <th width="13%">Is Published</th>
+                            <th width="5%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1; foreach($menus as $key => $value):?>
+                        <tr>
+                            <td><?=$i++?></td>
+                            <td><?=$value['menu']?></td>
+                            <td><?=$value['link']?></td>
+                            <td><?=$value['menu_parent']?></td>
+                            <td><?=$value['menu_order']?></td>
+                            <td>
+                                <input name="is_published" type="checkbox" <?= ($value['is_published'] == 1) ? 'checked':''; ?> 
+                                data-size="small" data-id="<?= encode($value['id']) ?>">
+                            </td>
+                            <td>
+                                <ul style="list-style: none;padding-left: 0px;padding-right: 0px; text-align: center;">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa fa-bars" style="font-size: large;"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right" style="right: 0; left: auto;">
+                                            <li>
+                                                <a href="<?=base_url('menus/update/'.encode($value['id']))?>">
+                                                    <i class="fa fa-pencil"></i> Edit
+                                                </a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="#" class="btn-delete" data-id="<?=encode($value['id'])?>">
+                                                    <i class="fa fa-trash"></i> Delete
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- bootstrap switch -->
+<script src="<?=base_url('assets/vendors/bootstrap-switch/bootstrap-switch.js')?>"></script>
+<!-- datatables -->
+<script src="<?=base_url('assets/vendors/datatables/js/jquery.dataTables.js')?>"></script>
+<script src="<?=base_url('assets/vendors/datatables/js/dataTables.bootstrap.js')?>"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+
+        $("[type='checkbox']").bootstrapSwitch(); // init bootstrap switch
+        $('input[name="is_published"]').on('switchChange.bootstrapSwitch', function(event, state) {
+            // console.log(state); // true | false
+            var id = $(this).data('id');
+            if(state == true) {
+                var is_published = 1;
+            } else {
+                var is_published = 0;
+            }
+            $.post("<?=base_url('menus/update_is_published')?>", { id:id, is_published:is_published });
+        });
+    })
+</script>
+<?php $this->load->view('helper/ajax_form_delete') ?>
