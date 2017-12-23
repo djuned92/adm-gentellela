@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Menus extends MX_Controller {
+class List_menus extends MX_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('m_menus','menus');
+		$this->load->model(array('m_menus','model_menus'));
 	}
 
 	/**
@@ -15,13 +15,14 @@ class Menus extends MX_Controller {
 	*/
 	public function index()
 	{
-		$data['menus'] = $this->global->getJoin(
+		$data['list_menus'] = $this->global->getJoin(
 							'menus as m','m.*, m1.menu as menu_parent',
 							['menus as m1' => 'm.parent = m1.id'],
 							['id'=> 'ASC'])->result_array();
+		$data['menus'] = $this->functions->generate_menu();
 		$this->template->set_layout('backend')
-						->title('Menus - Gentella')
-						->build('v_menus', $data);
+						->title('List Menus - Gentella')
+						->build('v_list_menus', $data);
 	}
 
 	/**
@@ -33,10 +34,11 @@ class Menus extends MX_Controller {
 	{
 		$this->form_validation->set_rules('menu', 'Menu', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
-			$d['menus'] = $this->menus->get_all();
+			$data['list_menus'] = $this->m_menus->get_all();
+			$data['menus'] = $this->functions->generate_menu();
 			$this->template->set_layout('backend')
 							->title('Add Menu - Gentella')
-							->build('f_menus', $d);
+							->build('f_list_menus', $data);
 		} else {
 			$this->db->trans_begin();
 			
@@ -46,15 +48,17 @@ class Menus extends MX_Controller {
 				'link'			=> $this->input->post('link'),
 				'is_published'	=> 1,
 				'menu_order'	=> $this->input->post('menu_order'),
-				'icon'			=> $this->input->post('icon'),
+				'created_at'	=> date('Y-m-d H:i:s'),
 			];
 
 			$parent = $this->input->post('parent');
 
-			if($parent == '' || $parent == 0) {
+			if($parent == 0) {
 				$value['level'] = 0; 
+				$value['icon'] 	= $this->input->post('icon'); 
 			} else {
-				$value['level'] = $this->menus->get_level_menu($parent);
+				$value['level'] = $this->m_menus->get_level_menu($parent);
+				$value['icon']	= NULL;
 			}
 
 			$data_menu = $value;
@@ -102,12 +106,13 @@ class Menus extends MX_Controller {
 	{
 		$this->form_validation->set_rules('menu', 'Menu', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
-			$id 		= decode($this->uri->segment(3));
-			$d['menus'] = $this->menus->get_all();
-			$d['menu'] 	= $this->global->getCond('menus', '*', ['id' => $id])->row_array();
+			$id 				= decode($this->uri->segment(3));
+			$data['list_menus'] = $this->m_menus->get_all();
+			$data['menus'] 		= $this->functions->generate_menu();
+			$data['menu'] 		= $this->global->getCond('menus', '*', ['id' => $id])->row_array();
 			$this->template->set_layout('backend')
 							->title('Update Menu - Gentella')
-							->build('f_menus', $d);
+							->build('f_list_menus', $data);
 		} else {
 			$this->db->trans_begin();
 			
@@ -117,15 +122,16 @@ class Menus extends MX_Controller {
 				'link'			=> $this->input->post('link'),
 				'is_published'	=> 1,
 				'menu_order'	=> $this->input->post('menu_order'),
-				'icon'			=> $this->input->post('icon'),
 			];
 
 			$parent = $this->input->post('parent');
 
-			if($parent == '' || $parent == 0) {
+			if($parent == 0) {
 				$value['level'] = 0; 
+				$value['icon'] 	= $this->input->post('icon'); 
 			} else {
-				$value['level'] = $this->menus->get_level_menu($parent);
+				$value['level'] = $this->m_menus->get_level_menu($parent);
+				$value['icon']	= NULL;
 			}
 
 			$data_menu = $value;

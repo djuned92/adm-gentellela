@@ -56,10 +56,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-2 col-sm-2 col-xs-12">URL/Link <span class="required">*</span></label>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">URL/Link </label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <input type="text" name="link" class="form-control" placeholder="URL/Link ..." 
-                            value="<?=isset($menu['link'])?$menu['link']:set_value('link');?>" required>
+                            value="<?=isset($menu['link'])?$menu['link']:set_value('link');?>">
                         </div>
                     </div>
 
@@ -74,8 +74,16 @@
                     <div class="form-group">
                         <label class="control-label col-md-2 col-sm-2 col-xs-12">Menu Order <span class="required">*</span></label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" name="menu_order" class="form-control" placeholder="Menu Order ..." 
+                            <input type="number" name="menu_order" class="form-control" placeholder="Menu Order ..." 
                             value="<?=isset($menu['menu_order'])?$menu['menu_order']:set_value('menu_order');?>" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="icon">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Icon <span class="required">*</span></label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input type="text" name="icon" class="form-control" id="fa_icon" placeholder="Icon ..." 
+                            value="<?=isset($menu['icon'])?$menu['icon']:set_value('icon');?>" required>
                         </div>
                     </div>
 
@@ -84,7 +92,7 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-2">
-                            <a href="<?=base_url('menus')?>">
+                            <a href="<?=base_url('list_menus')?>">
                                 <button type="button" class="btn btn-primary">Back</button>
                             </a>
                             <button type="submit" class="btn btn-success" id="save">Save</button>
@@ -92,6 +100,11 @@
                     </div>
 
                 </form>      
+            </div>
+        </div>
+        <div class="x_panel">
+            <div class="x_content">
+                <?php $this->load->view('font-awesome') ?>
             </div>
         </div>
     </div>
@@ -103,13 +116,30 @@
     $(document).ready(function() {
         $('#parent').select2({
             width: 'resolve',
-            data: <?php echo $menus; ?>
+            data: <?php echo $list_menus; ?>
+        });
+
+        $('#parent').on('change', function(e) {
+            var value = $(this).val();
+            if(value == 0) {
+                $('#icon').fadeIn('slow');
+            } else {
+                $('#icon').fadeOut('slow');
+            }
         });
 
         <?php if($this->uri->segment(2) == 'update'): ?>
             <?php $parent = isset($menu['parent']) ? $menu['parent'] : 0 ; ?>
             $('#parent').val(<?=$parent?>).trigger('change');
         <?php endif ?>
+
+        $('.icon-click').on('click', function() {
+            var icon = $(this).attr('href'),
+                icon2 = 'fa-' + icon.replace(/#\//g, ''); 
+            $('#fa_icon').val(icon2);
+            $("html, body").animate({ scrollTop: 0 }, 1000);
+            return false;
+        })
     });
 </script>
 <?php $this->load->view('helper/ajax_form_add_update.php') ?>

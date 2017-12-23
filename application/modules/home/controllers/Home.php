@@ -11,7 +11,10 @@ class Home extends MX_Controller {
 
 	public function index()
 	{
-		$data['pintu_air'] = [];
+		$data['menus'] 	= $this->functions->generate_menu();
+		$data['active'] = TRUE;
+		dd($data); 
+		$data['pintu_air'] = []; 
 		$this->template->set_layout('backend')
 						->title('Home - Gentella')
 						->build('v_home', $data);

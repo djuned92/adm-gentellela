@@ -24,7 +24,7 @@
             <div class="x_title">
                 <h2>Menus</h2>
                 <div class="navbar-right">
-                    <a href="<?=base_url('menus/add')?>">
+                    <a href="<?=base_url('list_menus/add')?>">
                         <button type="button" class="btn btn-sm btn-primary">
                             <i class="fa fa-plus"></i> Add
                         </button>
@@ -37,22 +37,24 @@
                     <thead>
                         <tr>
                             <th width="3%">#</th>
-                            <th width="20%">Menu</th>
-                            <th width="20%">URL/Link</th>
-                            <th width="20%">Parent</th>
+                            <th width="18%">Menu</th>
+                            <th width="18%">URL/Link</th>
+                            <th width="18%">Parent</th>
                             <th width="13%">Menu Order</th>
+                            <th width="6%">Icon</th>
                             <th width="13%">Is Published</th>
                             <th width="5%">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1; foreach($menus as $key => $value):?>
+                        <?php $i = 1; foreach($list_menus as $key => $value):?>
                         <tr>
                             <td><?=$i++?></td>
                             <td><?=$value['menu']?></td>
-                            <td><?=$value['link']?></td>
+                            <td><?=($value['link'] != NULL) ? '/'.$value['link']:''?></td>
                             <td><?=$value['menu_parent']?></td>
                             <td><?=$value['menu_order']?></td>
+                            <td><?= ($value['icon'] != NULL) ? '<i class="fa '.$value['icon'].'"></i>':'' ?></td>
                             <td>
                                 <input name="is_published" type="checkbox" <?= ($value['is_published'] == 1) ? 'checked':''; ?> 
                                 data-size="small" data-id="<?= encode($value['id']) ?>">
@@ -65,7 +67,7 @@
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu-right" style="right: 0; left: auto;">
                                             <li>
-                                                <a href="<?=base_url('menus/update/'.encode($value['id']))?>">
+                                                <a href="<?=base_url('list_menus/update/'.encode($value['id']))?>">
                                                     <i class="fa fa-pencil"></i> Edit
                                                 </a>
                                             </li>
@@ -106,8 +108,8 @@
             } else {
                 var is_published = 0;
             }
-            $.post("<?=base_url('menus/update_is_published')?>", { id:id, is_published:is_published });
+            $.post("<?=base_url('list_menus/update_is_published')?>", { id:id, is_published:is_published });
         });
-    })
+    });
 </script>
 <?php $this->load->view('helper/ajax_form_delete') ?>

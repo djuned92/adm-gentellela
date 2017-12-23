@@ -16,7 +16,7 @@ class Users extends MX_Controller {
 		$json 			= $this->curl->simple_get($url);
 		$users 			= json_decode($json, TRUE);
 		$data['users'] 	= $users['users'];
-
+		$data['menus']  = $this->functions->generate_menu();
 		
 		$this->template->set_layout('backend')
 						->title('Home - Gentella')
@@ -35,9 +35,10 @@ class Users extends MX_Controller {
 		if ($this->form_validation->run() == TRUE) {
 			$this->api_users->add();
 		} else {
+			$data['menus']  = $this->functions->generate_menu();
 			$this->template->set_layout('backend')
 							->title('Home - Gentella')
-							->build('f_users');	
+							->build('f_users',$data);	
 		}
 	}
 

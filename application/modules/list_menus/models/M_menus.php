@@ -21,8 +21,6 @@ class M_menus extends CI_Model {
 
         return json_encode($result);
 	}
-	
-
 }
 
 /* End of file M_menus.php */
