@@ -36,10 +36,9 @@
                 <table class="table table-bordered table-striped" id="myTable">
                     <thead>
                         <tr>
-                            <th width="3%">#</th>
-                            <th width="18%">Menu</th>
-                            <th width="18%">URL/Link</th>
-                            <th width="18%">Parent</th>
+                            <th width="30%">Menu</th>
+                            <th width="14%">URL/Link</th>
+                            <th width="14%">Parent</th>
                             <th width="13%">Menu Order</th>
                             <th width="6%">Icon</th>
                             <th width="13%">Is Published</th>
@@ -47,13 +46,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $i = 1; foreach($list_menus as $key => $value):?>
+                        <?php foreach($list_menus as $key => $value):?>
                         <tr>
-                            <td><?=$i++?></td>
-                            <td><?=$value['menu']?></td>
-                            <td><?=($value['link'] != NULL) ? '/'.$value['link']:''?></td>
-                            <td><?=$value['menu_parent']?></td>
-                            <td><?=$value['menu_order']?></td>
+                            <td>
+                                <?php 
+                                    switch ($value['level']) {
+                                        case '1':
+                                            echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;';
+                                            break;
+                                        case '2':
+                                            echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;';
+                                            break;
+                                        case '3':
+                                            echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;';
+                                            break;
+                                        default: break;
+                                    }
+                                ?>
+                                <?= $value['menu'] ?>        
+                            </td>
+                            <td><?= ($value['link'] != NULL) ? '/'.$value['link']:'' ?></td>
+                            <td><?= $value['menu_parent'] ?></td>
+                            <td><?= $value['menu_order'] ?></td>
                             <td><?= ($value['icon'] != NULL) ? '<i class="fa '.$value['icon'].'"></i>':'' ?></td>
                             <td>
                                 <input name="is_published" type="checkbox" <?= ($value['is_published'] == 1) ? 'checked':''; ?> 
@@ -97,7 +114,9 @@
 
 <script>
     $(document).ready(function() {
-        $('#myTable').DataTable();
+        $('#myTable').DataTable({
+            "order": [[ 3, "asc" ]]
+        });
 
         $("[type='checkbox']").bootstrapSwitch(); // init bootstrap switch
         $('input[name="is_published"]').on('switchChange.bootstrapSwitch', function(event, state) {

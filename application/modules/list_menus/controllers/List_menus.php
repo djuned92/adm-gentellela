@@ -18,7 +18,7 @@ class List_menus extends MX_Controller {
 		$data['list_menus'] = $this->global->getJoin(
 							'menus as m','m.*, m1.menu as menu_parent',
 							['menus as m1' => 'm.parent = m1.id'],
-							['id'=> 'ASC'])->result_array();
+							['menu_order'=> 'ASC'])->result_array();
 		$data['menus'] = $this->functions->generate_menu();
 		$this->template->set_layout('backend')
 						->title('List Menus - Gentella')
@@ -28,7 +28,7 @@ class List_menus extends MX_Controller {
 	/**
 	* function add menus
 	* create row menus and create rows user privileges as much record roles
-	* @return json, code|error|type|message
+	* @return json, error|type|message
 	*/
 	public function add()
 	{
@@ -82,13 +82,11 @@ class List_menus extends MX_Controller {
 
 			if ($this->db->trans_status() === FALSE) {
 	            $this->db->trans_rollback();
-				$result['code']		= 501;
 				$result['error']	= TRUE;
 				$result['type']		= 'error';
 				$result['message']	= 'Menu fail to created!';
 	        } else {
 	        	$this->db->trans_commit();
-				$result['code']		= 200;
 				$result['error']	= FALSE;
 				$result['type']		= 'success';
 				$result['message']	= 'Menu success to created!';
@@ -100,7 +98,7 @@ class List_menus extends MX_Controller {
 	/**
 	* function update menus
 	* update row menus
-	* @return json, code|error|type|message
+	* @return json, error|type|message
 	*/
 	public function update()
 	{
@@ -141,13 +139,11 @@ class List_menus extends MX_Controller {
 			// print_r($this->db->last_query());die();
 			if ($this->db->trans_status() === FALSE) {
 	            $this->db->trans_rollback();
-				$result['code']		= 501;
 				$result['error']	= TRUE;
 				$result['type']		= 'error';
 				$result['message']	= 'Menu fail to updated!';
 	        } else {
 	        	$this->db->trans_commit();
-				$result['code']		= 200;
 				$result['error']	= FALSE;
 				$result['type']		= 'success';
 				$result['message']	= 'Menu success to upated!';
@@ -159,7 +155,7 @@ class List_menus extends MX_Controller {
 	/**
 	* function update field is published
 	* update field is published on table menus
-	* @return json, code|error|type|message
+	* @return json, error|type|message
 	*/
 	public function update_is_published() 
 	{
@@ -170,10 +166,9 @@ class List_menus extends MX_Controller {
 
 		$this->global->update('menus', $data_menu, array('id' => $id));
 
-		$result['code'] 	= 200;
 		$result['error']	= FALSE;
 		$result['type']		= 'success';
-		$result['message']	= 'Menus has been updated!';
+		$result['message']	= 'Menu has been updated!';
 
 		echo json_encode($result);
 	}
@@ -181,21 +176,19 @@ class List_menus extends MX_Controller {
 	/**
 	* function delete menus
 	* delete row menus and delete rows user privileges where menu_id
-	* @return json, code|error|type|message
+	* @return json, error|type|message
 	*/
 	public function delete()
 	{
 		$id = decode($this->input->post('id'));
 
 		if($id != NULL || $id != '') {
-			$result['code'] 	= 200;
 			$result['error']	= FALSE;
 			$result['type']		= 'success';
 			$result['message']	= 'Menu has been deleted!';
 			$this->global->delete('menus', array('id' => $id));
 			$this->global->delete('user_privileges', array('menu_id' => $id));
 		} else {
-			$result['code'] 	= 404;
 			$result['error']	= TRUE;
 			$result['type']		= 'success';
 			$result['message']	= 'Menu fail to delete!';	

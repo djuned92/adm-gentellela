@@ -19,7 +19,8 @@ class Welcome extends CI_Controller {
 			$data = $this->global->getLastRecord('menus')->row_array();
 		// $data = $this->global->getCond('pintu_air','*',['gaugeNameId'=>['Pasar Ikan','Waduk Pluit']])->result_array();
 		// dd(decode('3IeCNQFaIBxnPlXABBb5VGUKzAV-A_DT_TsA3uG_83m-cvPkNc4dQZy1p-P_aPpJ2bS3_YRfIVtGz2aO4AzoSg~~'));
-		dd($data);
+		// print_r($this->functions->generate_menu());
+		dd($this->functions->generate_menu());
 		// $this->load->view('welcome_message');
 	}
 
@@ -27,5 +28,17 @@ class Welcome extends CI_Controller {
 	{
 		$this->output->set_status_header('404');
         $this->load->view('errors/error_404');
+	}
+
+	public function asd()
+	{
+		$options = [
+		    'cost' => 11,
+		    'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
+		];
+		$password_hash = password_hash('123', PASSWORD_BCRYPT, $options);
+		// $password_hash = encode(123);
+		$password_verify = password_verify('1234','$2y$11$OQxAxMsCKp3NAr4bQH0B.uXe7zpWxUJrGQnHEqtrdXaDDU//UHSyW');
+		dd($password_verify);
 	}
 }

@@ -1,5 +1,5 @@
 <section id="web-application">
-    <h2>Choose Icon Menu <small>Font Awesome Icons</small></h2>
+    <h2>Choose Icon Menu</h2>
 
     <div class="row fontawesome-icon-list">
 

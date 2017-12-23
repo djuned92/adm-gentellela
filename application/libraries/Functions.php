@@ -41,25 +41,25 @@ class Functions{
 								$menu_list .= '<li><a>'.$m2['menu'].'<span class="fa fa-chevron-down"></span></a>';
 								$menu_list .= '<ul class="nav child_menu">';
 								foreach($menu3 as $m3) {
-									$active = ($this->CI->uri->segment(1) == $m3['link']) ? 'class="active"':'';
-									$menu_list .= '<li '.$active.'><a>'.$m3['menu'].'<span class="fa fa-chevron-down"></span></a></li>';
+									// $active = ($this->CI->uri->segment(1) == $m3['link']) ? 'class="active"':'';
+									$menu_list .= '<li><a href="'.base_url($m3['link']).'">'.$m3['menu'].'</a></li>';
 								}
 								$menu_list .= '</ul></li>';
 							} else {
-								$active = ($this->CI->uri->segment(1) == $m2['link']) ? 'class="active"':'';
-								$menu_list .= '<li '.$active.'><a href="'.base_url($m2['link']).'">'.$m2['menu'].'</a></li>';
+								// $active = ($this->CI->uri->segment(1) == $m2['link']) ? 'class="active"':'';
+								$menu_list .= '<li><a href="'.base_url($m2['link']).'">'.$m2['menu'].'</a></li>';
 							}	
 						}
 						$menu_list .= '</ul></li>';
 					} else {
-						$active = ($this->CI->uri->segment(1) == $m1['link']) ? 'class="active"':'';
-						$menu_list .= '<li '.$active.'><a href="'.base_url($m1['link']).'">'.$m1['menu'].'</a></li>';
+						// $active = ($this->CI->uri->segment(1) == $m1['link']) ? 'class="active"':'';
+						$menu_list .= '<li><a href="'.base_url($m1['link']).'">'.$m1['menu'].'</a></li>';
 					}
 				}
 				$menu_list .= '</ul></li>';
 			} else {
-				$active = ($this->CI->uri->segment(1) == $m['link']) ? 'class="active"':'';
-				$menu_list .= '<li '.$active.'><a href="'.base_url($m['link']).'"><i class="fa '.$m['icon'].'"></i> '.$m['menu'].'</a></li>';
+				// $active = ($this->CI->uri->segment(1) == $m['link']) ? 'class="active"':'';
+				$menu_list .= '<li><a href="'.base_url($m['link']).'"><i class="fa '.$m['icon'].'"></i> '.$m['menu'].'</a></li>';
 			}
 
 			//dd($m['id']);

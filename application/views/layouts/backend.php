@@ -96,7 +96,7 @@
     <!-- sweet alert -->
     <script src="<?=base_url('assets/vendors/sweetalert/sweetalert.min.js')?>"></script>
     <!-- Custom Theme Scripts -->
-    <script src="<?=base_url('assets/js/custom.min.js')?>"></script>
+    <script src="<?=base_url('assets/js/custom.js')?>"></script>
     
     <!-- loader -->
     <script type="text/javascript">
