@@ -97,8 +97,8 @@ class Functions{
         $privileges = explode(',', $submodule);
 
         switch($action_module){
-            case "create"   : $grant_access = $privileges[0]; break;
-            case "edit"     : $grant_access = $privileges[1]; break;
+            case "add"   	: $grant_access = $privileges[0]; break;
+            case "update"   : $grant_access = $privileges[1]; break;
             case "delete"   : $grant_access = $privileges[2]; break;
             default         : $grant_access = 0; break;
         }

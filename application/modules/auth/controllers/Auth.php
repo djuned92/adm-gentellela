@@ -15,6 +15,7 @@ class Auth extends MX_Controller {
 		$this->load->view('v_login');
 	}
 
+	/*
 	public function add()
 	{
 		$this->form_validation->set_rules('username', 'Username', 'trim|required');
@@ -28,6 +29,7 @@ class Auth extends MX_Controller {
 			$this->api_users->add();
 		}
 	}
+	*/
 	
 	public function do_login()
 	{
@@ -38,7 +40,39 @@ class Auth extends MX_Controller {
 			$result['error'] 	= TRUE;
 			$result['message'] 	= validation_errors();
 		} else {
-			$this->api_auth->login();
+			$username 	= $this->input->post('username');
+			$password 	= $this->input->post('password');
+			// $device_token = $this->input->post('device_token');
+			$user 		= $this->auth->check_login($username);
+			
+			if(!empty($user)) {
+				if(password_verify($password, $user['password'])) {
+					// set session
+					$sess_data = [
+						'logged_in' => TRUE,
+						'role_id'	=> $user['role_id'],
+						'id'		=> $user['id'],
+						'username'	=> $user['username'],
+						// 'device_token' => $device_token,
+					];
+					$this->session->set_userdata($sess_data);
+
+					// update last login
+					$data['last_login'] = date('Y-m-d H:i:s');
+					// $data['device_token'] = ($device_token != null) ? $device_token : NULL;
+					(isset($user['id'])) ? $this->global->update('users', $data, array('id'=> $user['id'])) : '';
+
+					$result['error'] 	= FALSE;
+					$result['user']  	= $sess_data;
+				} else {
+					$result['error'] 	= TRUE;
+					$result['message'] 	= 'Wrong password';
+				}
+			} else {
+				$result['error'] 	= TRUE;
+				$result['message']	= 'User not found';
+			}
+			echo json_encode($result);
 		}
 	}
 

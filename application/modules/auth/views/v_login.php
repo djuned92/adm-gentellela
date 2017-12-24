@@ -148,7 +148,7 @@
                     },
                     submitHandler: function(form) {
                         $.ajax({
-                            url: "<?=base_url('auth/add')?>",
+                            url: "<?=base_url()?>",
                             type: 'post',
                             dataType: 'json',
                             data: $('#register_form').serializeArray(),
