@@ -6,22 +6,32 @@ class Privileges_user extends MX_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		//Do your magic here
 	}
 
+	/**
+	* function index priviliges user default role 1 = admin
+	* @return view priviliges user
+	*/
 	public function index()
 	{
+		$this->functions->check_access($this->session->role_id, $this->uri->segment(1));
+		$data['menus'] 		= $this->functions->generate_menu();
+		$data['priv']		= $this->functions->check_priv($this->session->role_id, $this->uri->segment(1));
 		$data['user_priv'] 	= $this->global->getCondJoin(
 								'user_privileges as up','up.id as user_priv_id, up.priv_create, priv_read, priv_update, priv_delete, m.menu, m.level, m.menu_order',
 								['role_id' => 1],
 								['menus as m' => 'up.menu_id = m.id'],
 								['m.menu_order','ASC'])->result_array();
-		$data['menus'] 		= $this->functions->generate_menu();
 		$this->template->set_layout('backend')
 						->title('Privileges User - Gentella')
 						->build('v_privileges_user', $data);				
 	}
 
+	/**
+	* function group || role
+	* @param role_id, get from session and encode role id
+	* @return view group || role by role id
+	*/
 	public function group($role_id)
 	{
 		$role_id = decode($role_id);
@@ -36,6 +46,10 @@ class Privileges_user extends MX_Controller {
 						->build('v_privileges_user', $data);
 	}
 
+	/**
+	* function check group
+	* @return json error|url
+	*/
 	public function check_group()
 	{
 		$role_id = $this->input->post('role_id');
@@ -49,6 +63,11 @@ class Privileges_user extends MX_Controller {
 		echo json_encode($result);
 	}
 
+	/**
+	* function update priv
+	* update priv_create, read, update, delete 0 or 1
+	* @return json error|message
+	*/
 	public function update_priv()
 	{
 		$id 		= $this->input->post('id');
@@ -82,6 +101,10 @@ class Privileges_user extends MX_Controller {
 
 	}
 
+	/**
+	* function get roles
+	* @return get all table roles
+	*/
 	public function get_roles()
 	{
 		if(!$this->input->is_ajax_request()) show_404();

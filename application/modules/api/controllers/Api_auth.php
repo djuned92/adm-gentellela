@@ -6,29 +6,31 @@ class Api_auth extends MX_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('m_auth');
 	}
 
 	public function login()
 	{
 		$username 	= $this->input->post('username');
 		$password 	= $this->input->post('password');
-		$device_token = $this->input->post('device_token');
-		$user 		= $this->global->check_login($username);
+		// $device_token = $this->input->post('device_token');
+		$user 		= $this->m_auth->check_login($username);
 		
 		if(!empty($user)) {
 			if(password_verify($password, $user['password'])) {
 				// set session
 				$sess_data = [
 					'logged_in' => TRUE,
+					'role_id'	=> $user['role_id'],
 					'id'		=> $user['id'],
 					'username'	=> $user['username'],
-					'device_token' => $device_token,
+					// 'device_token' => $device_token,
 				];
 				$this->session->set_userdata($sess_data);
 
 				// update last login
 				$data['last_login'] = date('Y-m-d H:i:s');
-				$data['device_token'] = ($device_token != null) ? $device_token : NULL;
+				// $data['device_token'] = ($device_token != null) ? $device_token : NULL;
 				(isset($user['id'])) ? $this->global->update('users', $data, array('id'=> $user['id'])) : '';
 
 				$result['code']  	= 200;
@@ -53,7 +55,7 @@ class Api_auth extends MX_Controller {
 		$id 		= $this->input->post('id');
 		$username 	= $this->input->post('username');
 
-		$user = $this->global->check_login($username);
+		$user = $this->m_auth->check_login($username);
 		
 		if($id != NULL) {
 			// update last login

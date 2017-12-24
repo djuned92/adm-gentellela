@@ -12,7 +12,7 @@ class Functions{
 
 	public function generate_menu()
 	{
-		$menus = $this->CI->menus->get_list_menus(1, 0, NULL);
+		$menus = $this->CI->menus->get_list_menus($this->CI->session->role_id, 0, NULL);
 		
 		$menu_list = '';
 		foreach($menus as $m) {
@@ -20,7 +20,7 @@ class Functions{
 			$id = $m['id'];
 
 			// level 1
-			$menu1 = $this->CI->menus->get_list_menus(1, 1, $id);
+			$menu1 = $this->CI->menus->get_list_menus($this->CI->session->role_id, 1, $id);
 			if(count($menu1) > 0) {
 				$menu_list .= '<li><a><i class="fa '.$m['icon'].'"></i> '.$m['menu'].' <span class="fa fa-chevron-down"></span></a>';
 				$menu_list .= '<ul class="nav child_menu">';
@@ -28,7 +28,7 @@ class Functions{
 					$id = $m1['id'];
 
 					// level 2
-					$menu2 = $this->CI->menus->get_list_menus(1, 2, $id);
+					$menu2 = $this->CI->menus->get_list_menus($this->CI->session->role_id, 2, $id);
 					if(count($menu2) > 0) {
 						$menu_list .= '<li><a>'.$m1['menu'].'<span class="fa fa-chevron-down"></span></a>';
 						$menu_list .= '<ul class="nav child_menu">';
@@ -36,7 +36,7 @@ class Functions{
 							$id = $m2['id'];
 
 							// level 3
-							$menu3 = $this->CI->menus->get_list_menus(1, 3, $id);
+							$menu3 = $this->CI->menus->get_list_menus($this->CI->session->role_id, 3, $id);
 							if(count($menu3) > 0) {
 								$menu_list .= '<li><a>'.$m2['menu'].'<span class="fa fa-chevron-down"></span></a>';
 								$menu_list .= '<ul class="nav child_menu">';
@@ -66,5 +66,46 @@ class Functions{
 		}
 
 		return $menu_list;
-	}	
+	}
+
+	// check priv for check button hide and show
+	function check_priv($role_id, $link){
+
+        $menu = $this->CI->menus->get_menu($role_id, $link);
+
+        return $menu;
+    }
+
+    // check access read if passing module by url
+    function check_access($role_id, $link){
+        $module = $this->CI->menus->get_menu($role_id, $link);
+        
+        $grant_access = $module['access_module'];
+
+        if($grant_access == 0){
+            show_404();
+        }
+
+    }
+
+    // check access create, update, delete if passing sub by url
+    function check_access2($role_id, $link, $action_module) {
+        $action_module = strtolower($action_module);
+        $module = $this->CI->menus->get_menu($role_id, $link);
+
+        $submodule = $module['privileges'];
+        $privileges = explode(',', $submodule);
+
+        switch($action_module){
+            case "create"   : $grant_access = $privileges[0]; break;
+            case "edit"     : $grant_access = $privileges[1]; break;
+            case "delete"   : $grant_access = $privileges[2]; break;
+            default         : $grant_access = 0; break;
+        }
+
+        if($grant_access == 0){
+            show_404();
+        }
+
+    }
 }

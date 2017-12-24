@@ -28,8 +28,25 @@ class Model_menus extends CI_Model {
 
         return $result;
 	}
-	
 
+    public function get_menu($role_id, $link)
+    {
+        $this->db->select('m.id, m.menu, up.priv_read as access_module, 
+                    CONCAT(up.priv_create,",",up.priv_update,",",up.priv_delete) as privileges')
+                    ->from('menus as m')
+                    ->join('user_privileges as up','m.id = up.menu_id')
+                    ->where('up.role_id',$role_id)
+                    ->where('link', $link);
+
+        $query = $this->db->get();
+   
+        if($query->num_rows() > 0)
+            $result = $query->row_array();
+        else
+            $result = array();
+
+        return $result;
+    }
 }
 
 /* End of file Model_menus.php */

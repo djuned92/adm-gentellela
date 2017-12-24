@@ -15,11 +15,14 @@ class List_menus extends MX_Controller {
 	*/
 	public function index()
 	{
+		$this->functions->check_access($this->session->role_id, $this->uri->segment(1)); // access read
+		$data['menus'] 		= $this->functions->generate_menu(); // generate menu
+		$data['priv']		= $this->functions->check_priv($this->session->role_id, $this->uri->segment(1)); // for button show and hide
+
 		$data['list_menus'] = $this->global->getJoin(
 							'menus as m','m.*, m1.menu as menu_parent',
 							['menus as m1' => 'm.parent = m1.id'],
 							['menu_order'=> 'ASC'])->result_array();
-		$data['menus'] = $this->functions->generate_menu();
 		$this->template->set_layout('backend')
 						->title('List Menus - Gentella')
 						->build('v_list_menus', $data);
@@ -32,6 +35,7 @@ class List_menus extends MX_Controller {
 	*/
 	public function add()
 	{
+		$this->functions->check_access2($this->session->role_id, $this->uri->segment(1), $this->uri->segment(2)); // access add, update, delete		
 		$this->form_validation->set_rules('menu', 'Menu', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
 			$data['list_menus'] = $this->m_menus->get_all();
@@ -102,6 +106,8 @@ class List_menus extends MX_Controller {
 	*/
 	public function update()
 	{
+		$this->functions->check_access2($this->session->role_id, $this->uri->segment(1), $this->uri->segment(2)); // access add, update, delete
+
 		$this->form_validation->set_rules('menu', 'Menu', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
 			$id 				= decode($this->uri->segment(3));
@@ -180,6 +186,8 @@ class List_menus extends MX_Controller {
 	*/
 	public function delete()
 	{
+		$this->functions->check_access2($this->session->role_id, $this->uri->segment(1), $this->uri->segment(2)); // access add, update, delete
+
 		$id = decode($this->input->post('id'));
 
 		if($id != NULL || $id != '') {

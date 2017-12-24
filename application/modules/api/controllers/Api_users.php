@@ -52,7 +52,7 @@ class Api_users extends MX_Controller {
 		$data = [
 			'username'	=> $username,
 			'password'	=> $password_hash,
-			'role'		=> 2,
+			'role_id'	=> 2,
 			'created_at'=> date('Y-m-d H:i:s'),
 		];
 

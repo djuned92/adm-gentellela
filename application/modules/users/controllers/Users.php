@@ -12,12 +12,12 @@ class Users extends MX_Controller {
 
 	public function index()
 	{
+		$this->functions->check_access($this->session->role_id, $this->uri->segment(1));
 		$url 			= base_url() .'api/api_users/get_all';
 		$json 			= $this->curl->simple_get($url);
 		$users 			= json_decode($json, TRUE);
 		$data['users'] 	= $users['users'];
 		$data['menus']  = $this->functions->generate_menu();
-		
 		$this->template->set_layout('backend')
 						->title('Home - Gentella')
 						->build('v_users', $data);
@@ -25,6 +25,7 @@ class Users extends MX_Controller {
 
 	public function add()
 	{
+		$this->functions->check_access2($this->session->role_id, $this->uri->segment(1), $this->uri->segment(2));
 		$this->form_validation->set_rules('username', 'Username', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required');
