@@ -6,7 +6,7 @@ class Group_user extends MX_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		
+		$this->functions->is_login();
 	}
 
 	/**
@@ -15,8 +15,11 @@ class Group_user extends MX_Controller {
 	*/
 	public function index()
 	{
+		$this->functions->check_access($this->session->role_id, $this->uri->segment(1)); // access read
+		$data['menus'] 		= $this->functions->generate_menu(); // generate menu
+		$data['priv']		= $this->functions->check_priv($this->session->role_id, $this->uri->segment(1)); // for button show and hide
+		
 		$data['group_user'] = $this->global->get('roles')->result_array();
-		$data['menus'] = $this->functions->generate_menu();
 		$this->template->set_layout('backend')
 						->title('Group User - Gentella')
 						->build('v_group_user', $data);

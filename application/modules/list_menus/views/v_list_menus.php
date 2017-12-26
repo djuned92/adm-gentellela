@@ -102,7 +102,7 @@
                                                 <?php if($privileges[1] == 1 && $privileges[2] == 1): ?>
                                                     <li class="divider"></li>
                                                 <?php endif ?>
-                                                <?php if($privileges[2] == 1): ?>                                            
+                                                <?php if($privileges[2] == 1): ?>           
                                                     <li>
                                                         <a href="#" class="btn-delete" data-id="<?=encode($value['id'])?>">
                                                             <i class="fa fa-trash"></i> Delete

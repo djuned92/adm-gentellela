@@ -69,7 +69,8 @@ class Functions{
 	}
 
 	// check priv for check button hide and show
-	function check_priv($role_id, $link){
+	public function check_priv($role_id, $link)
+	{
 
         $menu = $this->CI->menus->get_menu($role_id, $link);
 
@@ -77,7 +78,8 @@ class Functions{
     }
 
     // check access read if passing module by url
-    function check_access($role_id, $link){
+    public function check_access($role_id, $link)
+    {
         $module = $this->CI->menus->get_menu($role_id, $link);
         
         $grant_access = $module['access_module'];
@@ -85,11 +87,11 @@ class Functions{
         if($grant_access == 0){
             show_404();
         }
-
     }
 
     // check access create, update, delete if passing sub by url
-    function check_access2($role_id, $link, $action_module) {
+    public function check_access2($role_id, $link, $action_module) 
+    {
         $action_module = strtolower($action_module);
         $module = $this->CI->menus->get_menu($role_id, $link);
 
@@ -106,6 +108,11 @@ class Functions{
         if($grant_access == 0){
             show_404();
         }
-
     }
+
+    public function is_login()
+    {
+    	if(!isset($this->CI->session->logged_in)) redirect('auth');
+    }
+
 }

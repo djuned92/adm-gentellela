@@ -6,7 +6,8 @@ class List_menus extends MX_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('m_menus','model_menus'));
+		$this->functions->is_login();
+		$this->load->model('m_menus');
 	}
 
 	/**

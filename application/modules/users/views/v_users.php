@@ -1,3 +1,7 @@
+<?php 
+    $privileges = explode(',', $priv['privileges']);
+?>
+
 <!-- datatables -->
 <link href="<?=base_url('assets/vendors/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
 
@@ -22,13 +26,15 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Users</h2>
-                <div class="navbar-right">
-                    <a href="<?=base_url('users/add')?>">
-                        <button type="button" class="btn btn-sm btn-primary">
-                            <i class="fa fa-plus"></i> Add
-                        </button>
-                    </a>
-                </div>
+                <?php if($privileges[0] == 1): ?>
+                    <div class="navbar-right">
+                        <a href="<?=base_url('users/add')?>">
+                            <button type="button" class="btn btn-sm btn-primary">
+                                <i class="fa fa-plus"></i> Add
+                            </button>
+                        </a>
+                    </div>
+                <?php endif ?>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -41,7 +47,9 @@
                             <th width="34%">Address</th>
                             <th width="10%">Gender</th>
                             <th width="13%">Phone</th>
+                            <?php if($privileges[1] == 1 || $privileges[2] == 1): ?>
                             <th width="5%">Action</th>
+                            <?php endif ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,28 +61,36 @@
                             <td><?=$value['address']?></td>
                             <td align="center"><?=($value['gender'] == 1) ? '<i class="fa fa-male"></i>':'<i class="fa fa-female"></i>';?></td>
                             <td>+62 <?=$value['phone']?></td>
-                            <td>
-                                <ul style="list-style: none;padding-left: 0px;padding-right: 0px; text-align: center;">
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa fa-bars" style="font-size: large;"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-right" style="right: 0; left: auto;">
-                                            <li>
-                                                <a href="<?=base_url('users/update/'.encode($value['id']))?>">
-                                                    <i class="fa fa-pencil"></i> Edit
-                                                </a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="#" class="btn-delete" data-id="<?=encode($value['id'])?>">
-                                                    <i class="fa fa-trash"></i> Delete
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </td>
+                            <?php if($privileges[1] == 1 || $privileges[2] == 1): ?>
+                                <td>
+                                    <ul style="list-style: none;padding-left: 0px;padding-right: 0px; text-align: center;">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fa fa-bars" style="font-size: large;"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right" style="right: 0; left: auto;">
+                                                <?php if($privileges[1] == 1): ?>
+                                                    <li>
+                                                        <a href="<?=base_url('users/update/'.encode($value['id']))?>">
+                                                            <i class="fa fa-pencil"></i> Edit
+                                                        </a>
+                                                    </li>
+                                                <?php endif ?>
+                                                <?php if($privileges[1] == 1 && $privileges[2] == 1): ?>
+                                                    <li class="divider"></li>
+                                                <?php endif ?>
+                                                <?php if($privileges[2] == 1): ?>
+                                                    <li>
+                                                        <a href="#" class="btn-delete" data-id="<?=encode($value['id'])?>">
+                                                            <i class="fa fa-trash"></i> Delete
+                                                        </a>
+                                                    </li>
+                                                <?php endif ?>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                            <?php endif ?>
                         </tr>
                         <?php endforeach ?>
                     </tbody>

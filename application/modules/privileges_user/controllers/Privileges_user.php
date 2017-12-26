@@ -6,6 +6,7 @@ class Privileges_user extends MX_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->functions->is_login();
 	}
 
 	/**
