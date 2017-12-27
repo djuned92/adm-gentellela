@@ -32,6 +32,7 @@ class Group_user extends MX_Controller {
 	*/
 	public function add()
 	{
+		$this->functions->check_access2($this->session->role_id, $this->uri->segment(1), $this->uri->segment(2));
 		$this->form_validation->set_rules('role', 'Roles', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
 			$data['menus'] = $this->functions->generate_menu();
@@ -85,6 +86,7 @@ class Group_user extends MX_Controller {
 	*/
 	public function update()
 	{
+		$this->functions->check_access2($this->session->role_id, $this->uri->segment(1), $this->uri->segment(2));
 		$this->form_validation->set_rules('role', 'Roles', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
 			$id 				= decode($this->uri->segment(3));
@@ -127,6 +129,7 @@ class Group_user extends MX_Controller {
 	*/
 	public function delete()
 	{
+		$this->functions->check_access2($this->session->role_id, $this->uri->segment(1), $this->uri->segment(2));
 		$id = decode($this->input->post('id'));
 
 		if($id != NULL || $id != '') {
