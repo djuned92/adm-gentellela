@@ -53,6 +53,7 @@ class Auth extends MX_Controller {
 						'role_id'	=> $user['role_id'],
 						'id'		=> $user['id'],
 						'username'	=> $user['username'],
+						'redirect_back' => $_SERVER['HTTP_REFERER'],
 						// 'device_token' => $device_token,
 					];
 					$this->session->set_userdata($sess_data);

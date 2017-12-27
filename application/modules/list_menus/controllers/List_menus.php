@@ -114,6 +114,7 @@ class List_menus extends MX_Controller {
 			$id 				= decode($this->uri->segment(3));
 			$data['list_menus'] = $this->m_menus->get_all();
 			$data['menu'] 		= $this->global->getCond('menus', '*', ['id' => $id])->row_array();
+			(isset($data['menu'])) ? $data['menu'] : show_404();
 			$data['menus'] 		= $this->functions->generate_menu();
 			$this->template->set_layout('backend')
 							->title('Update Menu - Gentella')

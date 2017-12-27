@@ -5,6 +5,7 @@
     $CI = new CI_Controller();
   }
   $CI->load->helper('url');
+  $CI->load->library('user_agent');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +40,7 @@
               <h2>Sorry but we couldn't find this page</h2>
               <p>This page you are looking for does not exist
               </p>
-              <h4><a href="<?=base_url('home')?>"><i class="fa fa-home"></i> Back to home ...</a></h4>
+              <h4><a href="<?= $this->agent->referrer() ?>"><i class="fa fa-home"></i> Back to home ...</a></h4>
               <!-- 
               <div class="mid_center">
                 <h3>Search</h3>

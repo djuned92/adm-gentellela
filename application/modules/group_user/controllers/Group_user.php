@@ -88,8 +88,10 @@ class Group_user extends MX_Controller {
 		$this->form_validation->set_rules('role', 'Roles', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
 			$id 				= decode($this->uri->segment(3));
-			$data['menus'] 		= $this->functions->generate_menu();
 			$data['role'] 		= $this->global->getCond('roles', '*', ['id' => $id])->row_array();
+			(isset($data['role'])) ? $data['role'] : show_404();
+
+			$data['menus'] 		= $this->functions->generate_menu();
 			$this->template->set_layout('backend')
 							->title('Update Group User - Gentella')
 							->build('f_group_user', $data);

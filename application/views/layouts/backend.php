@@ -57,10 +57,8 @@
     <div id="preloader">
         <div id="status">
             <div class="loader">
-                <div class="loader-inner ball-pulse">
-                    <div class="bg-indigo-darker"></div>
-                    <div class="bg-indigo-darker"></div>
-                    <div class="bg-indigo-darker"></div>
+                <div class="square-spin">
+                    <div class="bg-teal-darkest"></div>
                 </div>
             </div>
         </div>

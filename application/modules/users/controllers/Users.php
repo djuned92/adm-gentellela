@@ -93,7 +93,8 @@ class Users extends MX_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$id 			= decode($this->uri->segment(3));
 			$data['user'] 	= $this->global->getCondJoin('profiles','*',['profiles.user_id'=> $id],['users'=>'users.id = profiles.user_id'])->row_array();
-			$data['menus'] 		= $this->functions->generate_menu();
+			(isset($data['user'])) ? $data['user'] : show_404();
+			$data['menus'] 	= $this->functions->generate_menu();
 			$this->template->set_layout('backend')
 							->title('Home - Gentella')
 							->build('f_users', $data);	

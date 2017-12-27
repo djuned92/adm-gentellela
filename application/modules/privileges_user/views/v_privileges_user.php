@@ -29,10 +29,10 @@
                         <tr>
                             <th>Menu Order</th>
                             <th width="40%">Menu</th>
-                            <th width="15%">Priv Create</th>
-                            <th width="15%">Priv Read</th>
-                            <th width="15%">Priv Update</th>
-                            <th width="15%">Priv Delete</th>
+                            <th width="15%" class="text-center">Priv Create</th>
+                            <th width="15%" class="text-center">Priv Read</th>
+                            <th width="15%" class="text-center">Priv Update</th>
+                            <th width="15%" class="text-center">Priv Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,16 +60,16 @@
 
                                 <?= $value['menu'] ?>    
                             </td>
-                            <td align="center">
+                            <td class="text-center">
                                 <input type="checkbox" name="priv_create" data-id="<?=$value['user_priv_id']?>" data-priv-is="priv_create" <?=($value['priv_create'] == 1) ? 'checked' : '' ?>>
                             </td>
-                            <td align="center">
+                            <td class="text-center">
                                 <input type="checkbox" name="priv_read" data-id="<?=$value['user_priv_id']?>" data-priv-is="priv_read" <?=($value['priv_read'] == 1) ? 'checked' : '' ?>>
                             </td>
-                            <td align="center">
+                            <td class="text-center">
                                 <input type="checkbox" name="priv_update" data-id="<?=$value['user_priv_id']?>" data-priv-is="priv_update" <?=($value['priv_update'] == 1) ? 'checked' : '' ?>>
                             </td>
-                            <td align="center">
+                            <td class="text-center">
                                 <input type="checkbox" name="priv_delete" data-id="<?=$value['user_priv_id']?>" data-priv-is="priv_delete" <?=($value['priv_delete'] == 1) ? 'checked' : '' ?>>
                             </td>
                         </tr>
@@ -97,6 +97,7 @@
             dom: '<"row datatables-header form-inline" <"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 role text-right">><"row" <"col-md-12"<"td-content"rt>>><"row" <"col-md-6"i><"col-md-6"p>>',
             order: [[ 0, "asc" ]],
             lengthMenu: [[50, 100, -1], [50, 100, "All"]],
+            scrollX: false,
         });
 
         $("div.role").html('<select name="role_id" id="role" class="form-control"></select>');

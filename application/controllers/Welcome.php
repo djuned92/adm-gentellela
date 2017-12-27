@@ -18,7 +18,7 @@ class Welcome extends CI_Controller {
 		// 			['username'=>(object)['LIKE','test2']])->result_array();
 			$data = $this->global->getLastRecord('menus')->row_array();
 		// $data = $this->global->getCond('pintu_air','*',['gaugeNameId'=>['Pasar Ikan','Waduk Pluit']])->result_array();
-		// dd(decode('3IeCNQFaIBxnPlXABBb5VGUKzAV-A_DT_TsA3uG_83m-cvPkNc4dQZy1p-P_aPpJ2bS3_YRfIVtGz2aO4AzoSg~~'));
+		dd(decode('3IeCNQFaIBxnPlXABBb5VGUKzAV-A_DT_TsA3uG_83m-cvPkNc4dQZy1p-P_aPpJ2bS3_YRfIVtGz2aO4AzoSg~~'));
 		// print_r($this->functions->generate_menu());
 		dd($this->functions->generate_menu());
 		// $this->load->view('welcome_message');
