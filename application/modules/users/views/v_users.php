@@ -7,7 +7,7 @@
 
 <div class="page-title">
     <div class="title_left">
-        <h3>Users</h3>
+        <h3>List User</h3>
     </div>
     <div class="title_right">
         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -25,7 +25,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Users</h2>
+                <h2>List User</h2>
                 <?php if($privileges[0] == 1): ?>
                     <div class="navbar-right">
                         <a href="<?=base_url('users/add')?>">

@@ -25,7 +25,7 @@ class List_menus extends MX_Controller {
 							['menus as m1' => 'm.parent = m1.id'],
 							['menu_order'=> 'ASC'])->result_array();
 		$this->template->set_layout('backend')
-						->title('List Menus - Gentella')
+						->title('List Menus - Gentellela')
 						->build('v_list_menus', $data);
 	}
 
@@ -42,7 +42,7 @@ class List_menus extends MX_Controller {
 			$data['list_menus'] = $this->m_menus->get_all();
 			$data['menus'] = $this->functions->generate_menu();
 			$this->template->set_layout('backend')
-							->title('Add Menu - Gentella')
+							->title('Add Menu - Gentellela')
 							->build('f_list_menus', $data);
 		} else {
 			$this->db->trans_begin();
@@ -117,7 +117,7 @@ class List_menus extends MX_Controller {
 			(isset($data['menu'])) ? $data['menu'] : show_404();
 			$data['menus'] 		= $this->functions->generate_menu();
 			$this->template->set_layout('backend')
-							->title('Update Menu - Gentella')
+							->title('Update Menu - Gentellela')
 							->build('f_list_menus', $data);
 		} else {
 			$this->db->trans_begin();

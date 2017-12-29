@@ -21,7 +21,7 @@ class Group_user extends MX_Controller {
 		
 		$data['group_user'] = $this->global->get('roles')->result_array();
 		$this->template->set_layout('backend')
-						->title('Group User - Gentella')
+						->title('Group User - Gentellela')
 						->build('v_group_user', $data);
 	}
 
@@ -37,7 +37,7 @@ class Group_user extends MX_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$data['menus'] = $this->functions->generate_menu();
 			$this->template->set_layout('backend')
-							->title('Add Group User - Gentella')
+							->title('Add Group User - Gentellela')
 							->build('f_group_user', $data);
 		} else {
 			$this->db->trans_begin();
@@ -95,7 +95,7 @@ class Group_user extends MX_Controller {
 
 			$data['menus'] 		= $this->functions->generate_menu();
 			$this->template->set_layout('backend')
-							->title('Update Group User - Gentella')
+							->title('Update Group User - Gentellela')
 							->build('f_group_user', $data);
 		} else {
 			$this->db->trans_begin();

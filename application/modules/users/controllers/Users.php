@@ -17,7 +17,7 @@ class Users extends MX_Controller {
 		
 		$data['users'] 	= $this->global->getJoin('profiles','*',['users'=>'users.id = profiles.user_id'])->result_array();
 		$this->template->set_layout('backend')
-						->title('Home - Gentella')
+						->title('Home - Gentellela')
 						->build('v_users', $data);
 	}
 
@@ -34,7 +34,7 @@ class Users extends MX_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$data['menus']  = $this->functions->generate_menu();
 			$this->template->set_layout('backend')
-							->title('Home - Gentella')
+							->title('Home - Gentellela')
 							->build('f_users',$data);
 		} else {
 			$this->db->trans_begin();
@@ -96,7 +96,7 @@ class Users extends MX_Controller {
 			(isset($data['user'])) ? $data['user'] : show_404();
 			$data['menus'] 	= $this->functions->generate_menu();
 			$this->template->set_layout('backend')
-							->title('Home - Gentella')
+							->title('Home - Gentellela')
 							->build('f_users', $data);	
 		} else {
 			$this->db->trans_begin();

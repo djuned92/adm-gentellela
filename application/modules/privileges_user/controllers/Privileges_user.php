@@ -24,7 +24,7 @@ class Privileges_user extends MX_Controller {
 								['menus as m' => 'up.menu_id = m.id'],
 								['m.menu_order','ASC'])->result_array();
 		$this->template->set_layout('backend')
-						->title('Privileges User - Gentella')
+						->title('Privileges User - Gentellela')
 						->build('v_privileges_user', $data);				
 	}
 
@@ -43,7 +43,7 @@ class Privileges_user extends MX_Controller {
 								['m.menu_order','ASC'])->result_array();
 		$data['menus'] 		= $this->functions->generate_menu();
 		$this->template->set_layout('backend')
-						->title('Privileges User - Gentella')
+						->title('Privileges User - Gentellela')
 						->build('v_privileges_user', $data);
 	}
 
