@@ -18,11 +18,11 @@
     <title>Not Found 404</title>
 
     <!-- Bootstrap -->
-    <link href="<?=base_url('assets/vendors/bootstrap/dist/css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?=base_url('assets/plugins/bootstrap/dist/css/bootstrap.min.css')?>" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="<?=base_url('assets/vendors/font-awesome/css/font-awesome.min.css')?>" rel="stylesheet">
+    <link href="<?=base_url('assets/plugins/font-awesome/css/font-awesome.min.css')?>" rel="stylesheet">
     <!-- NProgress -->
-    <link href="<?=base_url('assets/vendors/nprogress/nprogress.css')?>" rel="stylesheet">
+    <link href="<?=base_url('assets/plugins/nprogress/nprogress.css')?>" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="<?=base_url('assets/css/custom.min.css')?>" rel="stylesheet">
@@ -63,13 +63,13 @@
     </div>
 
     <!-- jQuery -->
-    <script src="<?=base_url('assets/vendors/jquery/dist/jquery.min.js')?>"></script>
+    <script src="<?=base_url('assets/plugins/jquery/dist/jquery.min.js')?>"></script>
     <!-- Bootstrap -->
-    <script src="<?=base_url('assets/vendors/bootstrap/dist/js/bootstrap.min.js')?>"></script>
+    <script src="<?=base_url('assets/plugins/bootstrap/dist/js/bootstrap.min.js')?>"></script>
     <!-- FastClick -->
-    <script src="<?=base_url('assets/vendors/fastclick/lib/fastclick.js')?>"></script>
+    <script src="<?=base_url('assets/plugins/fastclick/lib/fastclick.js')?>"></script>
     <!-- NProgress -->
-    <script src="<?=base_url('assets/vendors/nprogress/nprogress.js')?>"></script>
+    <script src="<?=base_url('assets/plugins/nprogress/nprogress.js')?>"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="<?=base_url('assets/js/custom.min.js')?>"></script>

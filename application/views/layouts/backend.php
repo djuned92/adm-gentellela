@@ -11,18 +11,18 @@
 
     <!-- global stylesheets -->
     <!-- Bootstrap -->
-    <link href="<?=base_url('assets/vendors/bootstrap/dist/css/bootstrap.min.css')?>" rel="stylesheet">
+    <link href="<?=base_url('assets/plugins/bootstrap/dist/css/bootstrap.min.css')?>" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="<?=base_url('assets/vendors/font-awesome/css/font-awesome.min.css')?>" rel="stylesheet">
+    <link href="<?=base_url('assets/plugins/font-awesome/css/font-awesome.min.css')?>" rel="stylesheet">
     <!-- NProgress -->
-    <link href="<?=base_url('assets/vendors/nprogress/nprogress.css')?>" rel="stylesheet">
+    <link href="<?=base_url('assets/plugins/nprogress/nprogress.css')?>" rel="stylesheet">
     <!-- color system -->
-    <link href="<?=base_url('assets/vendors/color-system/color-system.css')?>" rel="stylesheet" type="text/css">
+    <link href="<?=base_url('assets/plugins/color-system/color-system.css')?>" rel="stylesheet" type="text/css">
     <!-- sweet alert -->
-    <link href="<?=base_url('assets/vendors/sweetalert/sweetalert.css')?>" rel="stylesheet" type="text/css">
+    <link href="<?=base_url('assets/plugins/sweetalert/sweetalert.css')?>" rel="stylesheet" type="text/css">
     <!-- loader -->
-    <link href="<?=base_url('assets/vendors/loader/loader.css')?>" rel="stylesheet" type="text/css">
-    <link href="<?=base_url('assets/vendors/animate.css/animate.min.css')?>" rel="stylesheet" type="text/css">
+    <link href="<?=base_url('assets/plugins/loader/loader.css')?>" rel="stylesheet" type="text/css">
+    <link href="<?=base_url('assets/plugins/animate.css/animate.min.css')?>" rel="stylesheet" type="text/css">
     <!-- Custom Theme Style -->
     <link href="<?=base_url('assets/css/custom.min.css')?>" rel="stylesheet">
     <style type="text/css">
@@ -47,9 +47,9 @@
         }
     </style>
     <!-- jQuery -->
-    <script src="<?=base_url('assets/vendors/jquery/dist/jquery.min.js')?>"></script>
+    <script src="<?=base_url('assets/plugins/jquery/dist/jquery.min.js')?>"></script>
     <!-- Bootstrap -->
-    <script src="<?=base_url('assets/vendors/bootstrap/dist/js/bootstrap.min.js')?>"></script>
+    <script src="<?=base_url('assets/plugins/bootstrap/dist/js/bootstrap.min.js')?>"></script>
   </head>
 
   <body class="nav-md">
@@ -58,7 +58,7 @@
         <div id="status">
             <div class="loader">
                 <div class="square-spin">
-                    <div class="bg-teal-darkest"></div>
+                    <div style="background-color: #2A3F54;"></div>
                 </div>
             </div>
         </div>
@@ -86,13 +86,13 @@
 
     <!-- global script -->
     <!-- FastClick -->
-    <script src="<?=base_url('assets/vendors/fastclick/lib/fastclick.js')?>"></script>
+    <script src="<?=base_url('assets/plugins/fastclick/lib/fastclick.js')?>"></script>
     <!-- NProgress -->
-    <script src="<?=base_url('assets/vendors/nprogress/nprogress.js')?>"></script>
+    <script src="<?=base_url('assets/plugins/nprogress/nprogress.js')?>"></script>
     <!-- validator -->
-    <script src="<?=base_url('assets/vendors/jquery-validation/jquery.validate.min.js')?>"></script>
+    <script src="<?=base_url('assets/plugins/jquery-validation/jquery.validate.min.js')?>"></script>
     <!-- sweet alert -->
-    <script src="<?=base_url('assets/vendors/sweetalert/sweetalert.min.js')?>"></script>
+    <script src="<?=base_url('assets/plugins/sweetalert/sweetalert.min.js')?>"></script>
     <!-- Custom Theme Scripts -->
     <script src="<?=base_url('assets/js/custom.js')?>"></script>
     

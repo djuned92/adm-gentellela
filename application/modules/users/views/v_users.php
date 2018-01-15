@@ -3,7 +3,7 @@
 ?>
 
 <!-- datatables -->
-<link href="<?=base_url('assets/vendors/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
+<link href="<?=base_url('assets/plugins/datatables/css/dataTables.bootstrap.css')?>" rel="stylesheet">
 
 <div class="page-title">
     <div class="title_left">
@@ -101,12 +101,12 @@
 </div>
 
 <!-- datatables -->
-<script src="<?=base_url('assets/vendors/datatables/js/jquery.dataTables.js')?>"></script>
-<script src="<?=base_url('assets/vendors/datatables/js/dataTables.bootstrap.js')?>"></script>
+<script src="<?=base_url('assets/plugins/datatables/js/jquery.dataTables.js')?>"></script>
+<script src="<?=base_url('assets/plugins/datatables/js/dataTables.bootstrap.js')?>"></script>
+<!-- delete js -->
+<script src="<?=base_url('assets/js/delete.js')?>"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#myTable').DataTable();
     });
 </script>
-
-<?php $this->load->view('helper/ajax_form_delete') ?>

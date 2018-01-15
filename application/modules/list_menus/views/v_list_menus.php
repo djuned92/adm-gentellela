@@ -127,7 +127,8 @@
 <!-- datatables -->
 <script src="<?=base_url('assets/vendors/datatables/js/jquery.dataTables.js')?>"></script>
 <script src="<?=base_url('assets/vendors/datatables/js/dataTables.bootstrap.js')?>"></script>
-
+<!-- delete js -->
+<script src="<?=base_url('assets/js/delete.js')?>"></script>
 <script>
     $(document).ready(function() {
         $('#myTable').DataTable({
@@ -147,4 +148,3 @@
         });
     });
 </script>
-<?php $this->load->view('helper/ajax_form_delete') ?>

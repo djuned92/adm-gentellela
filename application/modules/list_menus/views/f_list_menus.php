@@ -112,6 +112,8 @@
 
 <!-- select2 -->
 <script src="<?=base_url('assets/vendors/select2/dist/js/select2.min.js')?>"></script>
+<!-- add update js -->
+<script src="<?=base_url('assets/js/add-update.js')?>"></script>
 <script>
     $(document).ready(function() {
         $('#parent').select2({
@@ -142,4 +144,3 @@
         })
     });
 </script>
-<?php $this->load->view('helper/ajax_form_add_update.php') ?>

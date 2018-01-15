@@ -118,8 +118,6 @@
     </div>
 </div>
 
-<!-- validator -->
-<script src="http://localhost/simonpa/assets/vendors/jquery-validation/jquery.validate.min.js"></script>   
 <script type="text/javascript">
     function readURL(input) {
 

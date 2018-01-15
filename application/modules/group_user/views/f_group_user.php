@@ -68,5 +68,5 @@
         </div>
     </div>
 </div>
-
-<?php $this->load->view('helper/ajax_form_add_update.php') ?>
+<!-- add update js -->
+<script src="<?=base_url('assets/js/add-update.js')?>"></script>
