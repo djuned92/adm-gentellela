@@ -7,18 +7,12 @@ class Home extends MX_Controller {
 	{
 		parent::__construct();
 		$this->functions->is_login();
-		$this->load->module('api/api_users');
 	}
 
 	public function index()
 	{
 		$data['menus'] 	= $this->functions->generate_menu();
-		$data['active'] = TRUE;
-		// dd($data); 
-		$data['pintu_air'] = []; 
-		$this->template->set_layout('backend')
-						->title('Home - Gentellela')
-						->build('v_home', $data);
+		$this->slice->view('v_home', $data);
 	}
 }
 

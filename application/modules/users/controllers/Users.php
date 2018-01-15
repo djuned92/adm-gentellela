@@ -16,9 +16,7 @@ class Users extends MX_Controller {
 		$data['priv']		= $this->functions->check_priv($this->session->role_id, $this->uri->segment(1)); // for button show and hide
 		
 		$data['users'] 	= $this->global->getJoin('profiles','*',['users'=>'users.id = profiles.user_id'])->result_array();
-		$this->template->set_layout('backend')
-						->title('Home - Gentellela')
-						->build('v_users', $data);
+		$this->slice->view('v_users', $data);
 	}
 
 	public function add()
@@ -33,9 +31,7 @@ class Users extends MX_Controller {
 		$this->form_validation->set_rules('gender', 'Gemder', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
 			$data['menus']  = $this->functions->generate_menu();
-			$this->template->set_layout('backend')
-							->title('Home - Gentellela')
-							->build('f_users',$data);
+			$this->slice->view('f_users',$data);
 		} else {
 			$this->db->trans_begin();
 		
@@ -95,9 +91,7 @@ class Users extends MX_Controller {
 			$data['user'] 	= $this->global->getCondJoin('profiles','*',['profiles.user_id'=> $id],['users'=>'users.id = profiles.user_id'])->row_array();
 			(isset($data['user'])) ? $data['user'] : show_404();
 			$data['menus'] 	= $this->functions->generate_menu();
-			$this->template->set_layout('backend')
-							->title('Home - Gentellela')
-							->build('f_users', $data);	
+			$this->slice->view('f_users', $data);	
 		} else {
 			$this->db->trans_begin();
 

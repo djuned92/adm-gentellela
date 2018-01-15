@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title><?=$template['title']?></title>
+    <title>@yield('title')</title>
 
     <!-- global stylesheets -->
     <!-- Bootstrap -->
@@ -46,10 +46,7 @@
             #status {left: 47%;}
         }
     </style>
-    <!-- jQuery -->
-    <script src="<?=base_url('assets/plugins/jquery/dist/jquery.min.js')?>"></script>
-    <!-- Bootstrap -->
-    <script src="<?=base_url('assets/plugins/bootstrap/dist/js/bootstrap.min.js')?>"></script>
+    @yield('css')
   </head>
 
   <body class="nav-md">
@@ -66,25 +63,29 @@
 
     <div class="container body">
       <div class="main_container">
-        <?php $this->load->view('layouts/partials/backend/sidebar.php') ?>
+        @include('layouts/partials/backend/sidebar')
 
         <!-- top navigation -->
-        <?php $this->load->view('layouts/partials/backend/top_navigation.php') ?>
+        @include('layouts/partials/backend/top_navigation')
         <!-- /top navigation -->
 
         <!-- page content -->
         <div class="right_col" role="main">
-            <?=$template['body']?>
+            @yield('content')
         </div>
         <!-- /page content -->
 
         <!-- footer content -->
-        <?php $this->load->view('layouts/partials/backend/footer.php') ?>
+        @include('layouts/partials/backend/footer')
         <!-- /footer content -->
       </div>
     </div>
 
     <!-- global script -->
+    <!-- jQuery -->
+    <script src="<?=base_url('assets/plugins/jquery/dist/jquery.min.js')?>"></script>
+    <!-- Bootstrap -->
+    <script src="<?=base_url('assets/plugins/bootstrap/dist/js/bootstrap.min.js')?>"></script>
     <!-- FastClick -->
     <script src="<?=base_url('assets/plugins/fastclick/lib/fastclick.js')?>"></script>
     <!-- NProgress -->
@@ -105,6 +106,7 @@
         });       
     </script>
 
+    @yield('script')
 
   </body>
 </html>

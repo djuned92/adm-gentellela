@@ -24,9 +24,7 @@ class List_menus extends MX_Controller {
 							'menus as m','m.*, m1.menu as menu_parent',
 							['menus as m1' => 'm.parent = m1.id'],
 							['menu_order'=> 'ASC'])->result_array();
-		$this->template->set_layout('backend')
-						->title('List Menus - Gentellela')
-						->build('v_list_menus', $data);
+		$this->slice->view('v_list_menus', $data);
 	}
 
 	/**
@@ -41,9 +39,7 @@ class List_menus extends MX_Controller {
 		if ($this->form_validation->run() == FALSE) {
 			$data['list_menus'] = $this->m_menus->get_all();
 			$data['menus'] = $this->functions->generate_menu();
-			$this->template->set_layout('backend')
-							->title('Add Menu - Gentellela')
-							->build('f_list_menus', $data);
+			$this->slice->view('f_list_menus', $data);
 		} else {
 			$this->db->trans_begin();
 			
@@ -116,9 +112,7 @@ class List_menus extends MX_Controller {
 			$data['menu'] 		= $this->global->getCond('menus', '*', ['id' => $id])->row_array();
 			(isset($data['menu'])) ? $data['menu'] : show_404();
 			$data['menus'] 		= $this->functions->generate_menu();
-			$this->template->set_layout('backend')
-							->title('Update Menu - Gentellela')
-							->build('f_list_menus', $data);
+			$this->slice->view('f_list_menus', $data);
 		} else {
 			$this->db->trans_begin();
 			
