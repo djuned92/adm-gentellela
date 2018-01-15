@@ -31,7 +31,7 @@ class Model_menus extends CI_Model {
 
     public function get_menu($role_id, $link)
     {
-        $this->db->select('m.id, m.menu, up.priv_read as access_module, 
+        $this->db->select('m.id, m.menu, up.priv_read as access_module, is_published,
                     CONCAT(up.priv_create,",",up.priv_update,",",up.priv_delete) as privileges')
                     ->from('menus as m')
                     ->join('user_privileges as up','m.id = up.menu_id')

@@ -84,6 +84,10 @@ class Functions{
         
         $grant_access = $module['access_module'];
 
+        if($module['is_published'] == 0) {
+        	show_404();
+        }
+
         if($grant_access == 0){
             show_404();
         }
@@ -105,6 +109,10 @@ class Functions{
             default         : $grant_access = 0; break;
         }
 
+        if($module['is_published'] == 0) {
+        	show_404();
+        }
+
         if($grant_access == 0){
             show_404();
         }
@@ -112,7 +120,9 @@ class Functions{
 
     public function is_login()
     {
-    	if(!isset($this->CI->session->logged_in)) redirect('auth');
+    	if(!isset($this->CI->session->logged_in)) {
+    		redirect('auth');
+    	}
     }
 
 }
