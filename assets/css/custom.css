@@ -4253,20 +4253,3 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
     background-color: #ffff !important;
 }
 /** /bootstrap-datetimepicker **/
-
-/*preeloader*/
-#preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff;z-index:9999999;}
-
-#status {width:100px;height:100px;position:absolute;left:47%;top:46%;background-repeat:no-repeat;background-position:center;}
-@media(max-width:320px){
-    #status{left: 39%;top: 45%;}
-}
-@media screen and (min-width: 321px) and (max-width: 375px) {
-    #status {left: 42%;}
-}
-@media screen and (min-width: 376px) and (max-width: 414px) {
-    #status {left: 43%;}
-}
-@media screen and (min-width: 767px) and (max-width: 768px) {
-    #status {left: 47%;}
-}

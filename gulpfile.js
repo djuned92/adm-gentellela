@@ -8,11 +8,10 @@ gulp.task('css', function() {
 		'assets/plugins/bootstrap/dist/css/bootstrap.css',
 		'assets/plugins/font-awesome/css/font-awesome.css',
 		'assets/plugins/nprogress/nprogress.css',
-		'assets/plugins/color-system/color-system.css',
 		'assets/plugins/sweetalert/sweetalert.min.css',
 		'assets/plugins/loader/loader.css',
 		'assets/plugins/animate.css/animate.min.css',
-		'assets/css/custom.css'
+		'assets/css/custom.min.css'
 	])
 	.pipe(cleanCSS())
 	.pipe(concat('app.min.css'))
