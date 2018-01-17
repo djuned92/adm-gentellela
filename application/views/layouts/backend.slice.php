@@ -10,7 +10,7 @@
     <title>@yield('title')</title>
 
     <!-- global stylesheets -->
-   <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/app.min.css')?>">
+    <link rel="stylesheet" type="text/css" href="<?=base_url('assets/css/app.min.css')?>">
     <style type="text/css">
         /*preloader*/
         #preloader {position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff;z-index:9999999;}
@@ -29,6 +29,7 @@
             #status {left: 47%;}
         }
     </style>
+    <link rel="icon" href="<?=base_url('assets/images/favicon.png')?>">
     @yield('css')
   </head>
 
