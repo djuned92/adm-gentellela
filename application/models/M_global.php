@@ -35,11 +35,9 @@ class M_global extends CI_Model {
                 elseif($operator == 'IN')
                     $this->db->where_in("`$field`", $value);
                 elseif($operator == 'NOT IN')
-                    $this->db->where_not_in("`$field`", $value);
-                
+                    $this->db->where_not_in("`$field`", $value);  
             }else{
-                $this->db->where("`$field`", $value);
-                
+                $this->db->where("`$field`", $value);   
             }
         }
         return $this;
