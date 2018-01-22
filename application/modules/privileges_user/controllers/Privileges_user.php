@@ -90,7 +90,8 @@ class Privileges_user extends MX_Controller {
 		}
 
 		$this->global->update('user_privileges', $data_priv, ['id' => $id]);
-		
+		noted_log($data_priv, $id);
+
 		$result['error'] 	= FALSE;
 		$result['message']	= 'Update privileges user successed!';
 

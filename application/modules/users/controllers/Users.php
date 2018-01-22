@@ -62,6 +62,8 @@ class Users extends MX_Controller {
 			];
 
 			$this->global->create('profiles', $data_profile);
+			$activity = array_merge($data, $data_profile);
+			noted_log($activity);
 			
 			if ($this->db->trans_status() === FALSE) {
 	            $this->db->trans_rollback();
@@ -141,6 +143,8 @@ class Users extends MX_Controller {
 			];
 
 			$this->global->update('profiles', $data_profile, array('user_id' => $id_user));
+			$activity = array_merge($data_user, $data_profile);
+			noted_log($activity, $id_user);
 
 			if ($this->db->trans_status() === FALSE) {
 	            $this->db->trans_rollback();
@@ -160,7 +164,14 @@ class Users extends MX_Controller {
 
 	public function delete()
 	{
+		$this->functions->check_access2($this->session->role_id, $this->uri->segment(1), $this->uri->segment(2)); // access add, update, delete
+		
 		$id = decode($this->input->post('id'));
+		$activity = $this->global->getCondJoin('profiles','*',
+								['profiles.user_id'=> $id],
+								['users'=>'users.id = profiles.user_id'])
+								->row_array();
+		noted_log($activity, $id);
 
 		if($id != NULL || $id != '') {
 			$result['error']	= FALSE;

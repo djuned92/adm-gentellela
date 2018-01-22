@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * dd is developer debug some vars and die.
@@ -72,3 +73,30 @@ function decode($value)
     $value = str_replace(array('-','_','~'), array('+','/','='), $value);   
     return $ci->encrypt->decode($value);
 }
+
+/**
+* function noted_log
+* @param activity = array, uri_segment_3
+* return create logs
+*/
+function noted_log($activity, $uri_segment_3 = FALSE)
+{
+    $ci =& get_instance();
+    $ci->load->model('m_global','global');
+    $ci->load->library('session');
+
+    if($uri_segment_3 == TRUE) {
+        $log = '/' . $ci->uri->segment(1) . '/' . $ci->uri->segment(2) . '/' . $uri_segment_3;
+    } else {
+        $log = '/' . $ci->uri->segment(1) . '/' . $ci->uri->segment(2);
+    }
+
+    $data_log = [
+        'log'           => $log,
+        'activity'      => json_encode($activity),
+        'user_id'       => $ci->session->id,
+        'created_by'    => $ci->session->username,
+        'created_at'    => date('Y-m-d H:i:s'),
+    ];
+    return $ci->global->create('logs', $data_log);
+} 

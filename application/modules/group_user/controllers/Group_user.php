@@ -59,6 +59,8 @@ class Group_user extends MX_Controller {
 			}
 
 			$this->global->create_batch('user_privileges', $data_user_priv);
+			$activity = array_merge($data_roles, $data_user_priv);
+			noted_log($activity);
 
 			if ($this->db->trans_status() === FALSE) {
 	            $this->db->trans_rollback();
@@ -100,7 +102,8 @@ class Group_user extends MX_Controller {
 			$id = decode($this->input->post('id'));
 
 			$this->global->update('roles', $data_roles, ['id' => $id]);
-			
+			noted_log($data_roles, $id);
+
 			if ($this->db->trans_status() === FALSE) {
 	            $this->db->trans_rollback();
 				$result['error']	= TRUE;
@@ -124,7 +127,10 @@ class Group_user extends MX_Controller {
 	public function delete()
 	{
 		$this->functions->check_access2($this->session->role_id, $this->uri->segment(1), $this->uri->segment(2));
+		
 		$id = decode($this->input->post('id'));
+		$activity = $this->global->getCond('roles','*',['id'=>$id])->row_array();
+		noted_log($activity, $id);
 
 		if($id != NULL || $id != '') {
 			$result['error']	= FALSE;

@@ -80,6 +80,8 @@ class List_menus extends MX_Controller {
 			}
 
 			$this->global->create_batch('user_privileges', $data_user_priv);
+			$activity = array_merge($data_menu, $data_user_priv);
+			noted_log($activity);
 
 			if ($this->db->trans_status() === FALSE) {
 	            $this->db->trans_rollback();
@@ -138,7 +140,8 @@ class List_menus extends MX_Controller {
 			$id = decode($this->input->post('id'));
 
 			$this->global->update('menus', $data_menu, ['id' => $id]);
-			// print_r($this->db->last_query());die();
+			noted_log($data_menu, $id);
+
 			if ($this->db->trans_status() === FALSE) {
 	            $this->db->trans_rollback();
 				$result['error']	= TRUE;
@@ -167,6 +170,7 @@ class List_menus extends MX_Controller {
 		];
 
 		$this->global->update('menus', $data_menu, array('id' => $id));
+		noted_log($data_menu, $id);
 
 		$result['error']	= FALSE;
 		$result['type']		= 'success';
@@ -184,7 +188,12 @@ class List_menus extends MX_Controller {
 	{
 		$this->functions->check_access2($this->session->role_id, $this->uri->segment(1), $this->uri->segment(2)); // access add, update, delete
 
-		$id = decode($this->input->post('id'));
+		$id 				= decode($this->input->post('id'));
+		$menus 				= $this->global->getCond('menus','*',['id'=>$id])->row_array();
+		$user_privileges 	= $this->global->getCond('user_privileges','*',['id'=>$id])->row_array();
+		
+		$activity = array_merge($menus, $user_privileges);
+		noted_log($activity, $id);
 
 		if($id != NULL || $id != '') {
 			$result['error']	= FALSE;
