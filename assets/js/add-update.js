@@ -35,7 +35,6 @@ $(document).ready(function() {
                 uri_segment = window.location.pathname.split('/'),
                 base_url = window.location.origin + '/' + uri_segment[1], // base url
                 uri_segment_2 = uri_segment[2]; // name controller
-
             
             if(uri_segment[3] == 'add') {
                 var this_url = base_url + '/' + uri_segment_2 + '/add';
@@ -43,16 +42,14 @@ $(document).ready(function() {
                 var this_url = base_url + '/' + uri_segment_2 + '/update';
             }
 
-            console.log(this_url);
-
             $.ajax({
                 type: 'post',
                 enctype: 'multipart/form-data',
                 url: this_url,
                 dataType: "json",
                 data: data,
-                async: false,
                 processData: false,
+                async: false,
                 contentType: false,
                 cache: false,
                 timeout: 600000,
