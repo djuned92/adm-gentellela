@@ -109,6 +109,7 @@ class Users extends MX_Controller {
 				$password_hash = password_hash($password, PASSWORD_BCRYPT, $options);
 				
 				$data_user = [
+					'username'	=> $username,
 					'password'	=> $password_hash,
 				];
 

@@ -190,8 +190,7 @@ class List_menus extends MX_Controller {
 
 		$id 				= decode($this->input->post('id'));
 		$menus 				= $this->global->getCond('menus','*',['id'=>$id])->row_array();
-		$user_privileges 	= $this->global->getCond('user_privileges','*',['id'=>$id])->row_array();
-		
+		$user_privileges 	= $this->global->getCond('user_privileges','*',['menu_id'=>$id])->row_array();
 		$activity = array_merge($menus, $user_privileges);
 		noted_log($activity, $id);
 

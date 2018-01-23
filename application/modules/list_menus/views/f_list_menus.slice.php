@@ -4,7 +4,7 @@
 
 @section('css')
     <!-- select2 -->
-    <link href="<?=base_url('assets/vendors/select2/dist/css/select2.min.css')?>" rel="stylesheet">
+    <link href="<?=base_url('assets/plugins/select2/dist/css/select2.min.css')?>" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -122,7 +122,7 @@
 
 @section('script')
 <!-- select2 -->
-<script src="<?=base_url('assets/vendors/select2/dist/js/select2.min.js')?>"></script>
+<script src="<?=base_url('assets/plugins/select2/dist/js/select2.min.js')?>"></script>
 <!-- add update js -->
 <script src="<?=base_url('assets/js/add-update.js')?>"></script>
 <script>
