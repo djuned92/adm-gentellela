@@ -16,7 +16,6 @@ class Privileges_user extends MX_Controller {
 	public function index()
 	{
 		$this->functions->check_access($this->session->role_id, $this->uri->segment(1));
-		$data['menus'] 		= $this->functions->generate_menu();
 		$data['priv']		= $this->functions->check_priv($this->session->role_id, $this->uri->segment(1));
 		$data['user_priv'] 	= $this->global->getCondJoin(
 								'user_privileges as up','up.id as user_priv_id, up.priv_create, priv_read, priv_update, priv_delete, m.menu, m.level, m.menu_order',

@@ -16,7 +16,6 @@ class Group_user extends MX_Controller {
 	public function index()
 	{
 		$this->functions->check_access($this->session->role_id, $this->uri->segment(1)); // access read
-		$data['menus'] 		= $this->functions->generate_menu(); // generate menu
 		$data['priv']		= $this->functions->check_priv($this->session->role_id, $this->uri->segment(1)); // for button show and hide
 		
 		$data['group_user'] = $this->global->get('roles')->result_array();
@@ -33,7 +32,6 @@ class Group_user extends MX_Controller {
 		$this->functions->check_access2($this->session->role_id, $this->uri->segment(1), $this->uri->segment(2));
 		$this->form_validation->set_rules('role', 'Roles', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
-			$data['menus'] = $this->functions->generate_menu();
 			$this->slice->view('f_group_user', $data);
 		} else {
 			$this->db->trans_begin();
@@ -91,7 +89,6 @@ class Group_user extends MX_Controller {
 			$data['role'] 		= $this->global->getCond('roles', '*', ['id' => $id])->row_array();
 			(isset($data['role'])) ? $data['role'] : show_404();
 
-			$data['menus'] 		= $this->functions->generate_menu();
 			$this->slice->view('f_group_user', $data);
 		} else {
 			$this->db->trans_begin();

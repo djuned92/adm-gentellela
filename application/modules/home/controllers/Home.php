@@ -11,8 +11,7 @@ class Home extends MX_Controller {
 
 	public function index()
 	{
-		$data['menus'] 	= $this->functions->generate_menu();
-		$this->slice->view('v_home', $data);
+		$this->slice->view('v_home');
 	}
 
 }

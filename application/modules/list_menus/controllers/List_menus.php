@@ -17,7 +17,6 @@ class List_menus extends MX_Controller {
 	public function index()
 	{
 		$this->functions->check_access($this->session->role_id, $this->uri->segment(1)); // access read
-		$data['menus'] 		= $this->functions->generate_menu(); // generate menu
 		$data['priv']		= $this->functions->check_priv($this->session->role_id, $this->uri->segment(1)); // for button show and hide
 
 		$data['list_menus'] = $this->global->getJoin(
@@ -38,7 +37,6 @@ class List_menus extends MX_Controller {
 		$this->form_validation->set_rules('menu', 'Menu', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
 			$data['list_menus'] = $this->m_menus->get_all();
-			$data['menus'] = $this->functions->generate_menu();
 			$this->slice->view('f_list_menus', $data);
 		} else {
 			$this->db->trans_begin();
@@ -113,7 +111,6 @@ class List_menus extends MX_Controller {
 			$data['list_menus'] = $this->m_menus->get_all();
 			$data['menu'] 		= $this->global->getCond('menus', '*', ['id' => $id])->row_array();
 			(isset($data['menu'])) ? $data['menu'] : show_404();
-			$data['menus'] 		= $this->functions->generate_menu();
 			$this->slice->view('f_list_menus', $data);
 		} else {
 			$this->db->trans_begin();

@@ -12,7 +12,6 @@ class Users extends MX_Controller {
 	public function index()
 	{
 		$this->functions->check_access($this->session->role_id, $this->uri->segment(1)); // access read
-		$data['menus'] 		= $this->functions->generate_menu(); // generate menu
 		$data['priv']		= $this->functions->check_priv($this->session->role_id, $this->uri->segment(1)); // for button show and hide
 		
 		$data['users'] 	= $this->global->getJoin('profiles','*',['users'=>'users.id = profiles.user_id'])->result_array();
@@ -30,7 +29,6 @@ class Users extends MX_Controller {
 		$this->form_validation->set_rules('phone', 'Phone', 'trim|required');
 		$this->form_validation->set_rules('gender', 'Gemder', 'trim|required');
 		if ($this->form_validation->run() == FALSE) {
-			$data['menus']  = $this->functions->generate_menu();
 			$this->slice->view('f_users',$data);
 		} else {
 			$this->db->trans_begin();
@@ -92,7 +90,6 @@ class Users extends MX_Controller {
 			$id 			= decode($this->uri->segment(3));
 			$data['user'] 	= $this->global->getCondJoin('profiles','*',['profiles.user_id'=> $id],['users'=>'users.id = profiles.user_id'])->row_array();
 			(isset($data['user'])) ? $data['user'] : show_404();
-			$data['menus'] 	= $this->functions->generate_menu();
 			$this->slice->view('f_users', $data);	
 		} else {
 			$this->db->trans_begin();

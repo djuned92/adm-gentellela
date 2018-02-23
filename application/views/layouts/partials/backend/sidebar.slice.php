@@ -23,24 +23,7 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                     <li><a href="<?=base_url('home')?>"><i class="fa fa-dashboard"></i> Dashboard </a></li>
-                    <?=$menus?>
-
-                    <!--  <li><a href="<?=base_url('users')?>"><i class="fa fa-users"></i> Manage Users </a></li>
-                    <li>
-                        <a><i class="fa fa-gear"></i> Settings <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            <li><a href="#level1_1">Level One</a>
-                            <li>
-                                <a>Menus<span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li class="sub_menu"><a href="<?=base_url('menus')?>">List Menus</a>
-                                    </li>
-                                    <li><a href="#level2_1">User Privileges</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li> -->
+                    {{ generate_menu() }}
                 </ul>
             </div>
         </div>
