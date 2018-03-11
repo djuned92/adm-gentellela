@@ -211,7 +211,7 @@ class M_global extends CI_Model {
 		if($last_id = TRUE) {
 			return $this->db->insert_id();
 		} else {
-			return $this;
+			return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
 		}
 
 	}
@@ -225,7 +225,7 @@ class M_global extends CI_Model {
 	public function create_batch($table, $data)
 	{
 		$this->db->insert_batch($table, $data);
-		return $this;
+		return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
 	}
 
 	/**
@@ -238,7 +238,7 @@ class M_global extends CI_Model {
 	public function update($table, $data, $id)
 	{
 		$this->db->update($table, $data, $id);
-		return $this;
+		return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
 	}
 
 	/**
@@ -250,7 +250,7 @@ class M_global extends CI_Model {
 	public function delete($table, $id)
 	{
 		$this->db->delete($table, $id);
-		return $this;
+		return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
 	}
 }
 
