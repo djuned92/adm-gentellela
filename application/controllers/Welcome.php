@@ -16,7 +16,7 @@ class Welcome extends CI_Controller {
 							// ['menu'=>'List User']) // where
 							->result_array();
 		
-		// function getJoint
+		// function getJoin
 		$data = $this->global->getJoin(
 								'users as u',
 								'u.username, p.fullname, p.gender, p.address', 

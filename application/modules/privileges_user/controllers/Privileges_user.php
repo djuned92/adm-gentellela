@@ -38,7 +38,6 @@ class Privileges_user extends MX_Controller {
 								['role_id' => $role_id],
 								['menus as m' => 'up.menu_id = m.id'],
 								['m.menu_order','ASC'])->result_array();
-		$data['menus'] 		= $this->functions->generate_menu();
 		$this->slice->view('v_privileges_user', $data);
 	}
 
