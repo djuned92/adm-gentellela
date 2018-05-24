@@ -3,7 +3,7 @@ this function global add update in another page
 how to use: 
 1. set id form to myForm
 2. in controller, ex: controller : users. create function in controller users name add, update
-3. return from controller function delete make sure json encode  
+3. return from controller function add, update make sure json encode  
     a.message = 'data has been added or updated!', 
     b.type ='success'
 4. make sure uri_segment_2 add or update. in here im using hmvc
