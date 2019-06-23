@@ -208,7 +208,7 @@ class M_global extends CI_Model {
 	{
 		$this->db->insert($table, $data);
 		
-		if(!$last_id) {
+		if($last_id) {
 			return $this->db->insert_id();
 		} else {
 			return ($this->db->affected_rows() > 0) ? TRUE : FALSE;
