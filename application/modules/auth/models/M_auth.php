@@ -18,14 +18,9 @@ class M_auth extends CI_Model {
 
 	public function dd($username)
 	{
-		$query = $this->db->get_where('users', array('username'=>$username));
+		$query = $this->db->get_where('users', array('username'=>$usernamee));
 
-		if($query->num_rows() > 0)
-            $result = $query->row_array();
-        else
-            $result = array();
-
-        return $result;
+        return $query->num_rows() > 0 ? $query->row_array() : [];
 	}
 }
 
