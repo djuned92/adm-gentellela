@@ -17,7 +17,8 @@ class Auth extends MX_Controller {
 
 	public function test()
 	{
-		$this->m_auth->dd();
+		$username = $this->input->get('username');
+		$data = $this->m_auth->dd();
 		$this->load->view('v_login');
 	}
 
