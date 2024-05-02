@@ -15,6 +15,12 @@ class Auth extends MX_Controller {
 		$this->load->view('v_login');
 	}
 
+	public function test()
+	{
+		$this->m_auth->dd();
+		$this->load->view('v_login');
+	}
+
 	/*
 	public function add()
 	{
