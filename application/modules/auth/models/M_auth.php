@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed'); 
 
 class M_auth extends CI_Model {
 
@@ -14,6 +14,13 @@ class M_auth extends CI_Model {
 
         return $result;
 
+	}
+
+	public function dd($username)
+	{
+		$query = $this->db->get_where('users', array('username'=>$usernamee));
+
+        return $query->num_rows() > 0 ? $query->row_array() : [];
 	}
 }
 
