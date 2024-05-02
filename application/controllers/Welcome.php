@@ -28,4 +28,9 @@ class Welcome extends CI_Controller {
 		
 		dd($data);
 	}
+
+	public function test()
+	{
+		echo "test";
+	}
 }
